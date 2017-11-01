@@ -12,6 +12,7 @@ namespace PasswordHashing
         {
             // ask user to login
             Console.Write("Create username:");
+            Console.Write("is mayonnaise an instrument");
             String username = Console.ReadLine();
             Console.Write("Create password:");
             String password = Console.ReadLine();
