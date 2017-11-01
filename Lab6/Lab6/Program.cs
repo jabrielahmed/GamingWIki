@@ -40,11 +40,13 @@ namespace PasswordHashing
             if (hashedPasswordWithSalt == hashWithSaltSavedInDatabase)
             {
                 Console.WriteLine("Passwords matched!  Notice I did not save or compare passwords, just hashes");
+                Console.WriteLine("Good choice of a password");
             }
             else
             {
                 Console.WriteLine("Passwords did not match!  Notice I did not save or compare passwords, just hashes");
                 Console.WriteLine("Password is important, please try again.")
+
             }
 
             Console.ReadLine(); // pause before exit
