@@ -1,4 +1,5 @@
 
+
 <?php
 
         echo "<header>
@@ -14,15 +15,10 @@
 			<nav>
     
 				<form action='search.php' method='post'>
-					<input type='text' name='search' id='search' class='inNav' col='2' placeholder='          Custom Search'/>
+					<input type='text' name='search' id='search' class='inNav' col='2' placeholder='Custom Search'/>
 				</form>
     
-				<form action='signin.js' method='post'>
-				<input type='submit' value='SIGNIN' class='inNav' id='signin'></button>
-				</form>
-        
-				<form action='creataccount.html'>
+				<input type='submit' value='SIGNIN'   class='inNav' id='signin'></input>
 				<input type='submit' value='SIGNUP' id='signup' class='inNav'></input>
-				</form>   
-			</nav>"			
+			</nav>"	
 ?>
