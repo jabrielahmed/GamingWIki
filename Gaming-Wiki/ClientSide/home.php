@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -10,7 +10,9 @@
 </head>
 <?php require_once('./initHeader.php') ?>
 <div id="main">
+     <?php require_once('./login/sign-up/signup.html') ?>
+     <?php require_once('./login/sign-in/signin.html') ?> 
 </div>
 <?php require_once('./initFooter.php') ?>
-
+<script src="./login/login.js"> </script>
 </html>
