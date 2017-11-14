@@ -15,4 +15,4 @@
 </div>
 <?php require_once('./initFooter.php') ?>
 <script src="./login/login.js"> </script>
-</html>
+
