@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="style.css" />
  
 </head>
+ <body>
 <?php require_once('./initHeader.php') ?>
 <div id="main">
      <?php require_once('./login/sign-up/signup.html') ?>
@@ -15,4 +16,5 @@
 </div>
 <?php require_once('./initFooter.php') ?>
 <script src="./login/login.js"> </script>
-
+ </body>
+</html>
