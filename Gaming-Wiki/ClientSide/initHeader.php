@@ -3,7 +3,7 @@
 <?php
 
         echo "<header>
-			<a href='https://webdev.cs.uwosh.edu/students/guang16/gamingwikiindex/home.php'>
+			<a href='http://webdev.cs.uwosh.edu/students/dhirar25/ClientSide/home.php'>
 			<img src='gamingwiki.png' alt='Gamingwiki Logo' width = '100' height = '100'/>
 			</a>
     
