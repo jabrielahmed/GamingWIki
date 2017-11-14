@@ -57,7 +57,7 @@ nav {
 	
 }
 
-.inNav#signup {
+.inNav#signin {
 	background: green;
 	font-size:20px;
 	word-spacing:2em;	
@@ -66,7 +66,7 @@ nav {
 	
 }
 
-.inNav#signin {
+.inNav#signup {
 	background: yellow;
 	font-size:20px;
 	word-spacing:2em;

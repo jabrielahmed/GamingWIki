@@ -14,10 +14,15 @@
 			<nav>
     
 				<form action='search.php' method='post'>
-					<input type='text' name='search' id='search' class='inNav' col='2' placeholder='Custom Search'/>
+					<input type='text' name='search' id='search' class='inNav' col='2' placeholder='          Custom Search'/>
 				</form>
     
-				<input type='submit' value='SIGNIN'   class='inNav' id='signin'></input>
+				<form action='signin.js' method='post'>
+				<input type='submit' value='SIGNIN' class='inNav' id='signin'></button>
+				</form>
+        
+				<form action='creataccount.html'>
 				<input type='submit' value='SIGNUP' id='signup' class='inNav'></input>
-			</nav>"	
+				</form>   
+			</nav>"			
 ?>
