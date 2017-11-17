@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=UserTable
+comment1.params=
+comment1.target=UserTable()
+comment2.params=args
+comment2.target=void\ main(java.lang.String[])
+comment3.params=userName
+comment3.target=void\ removeUser(java.lang.String)
+comment4.params=
+comment4.target=void\ getAll()
+numComments=5
