@@ -27,4 +27,5 @@
 	</div>
 	<?php require_once('./initFooter.php') ?>
 </body>
+	<script src = "./login/login.js"></script>
 </html>
