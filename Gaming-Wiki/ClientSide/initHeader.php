@@ -1,5 +1,5 @@
 <?php echo"
-	<header>
+	<div id = 'navBar'>
 	<table>
 	<tr>
 		<td>
@@ -21,13 +21,12 @@
 		</td>
 	</tr>
 	</table>
-	</header>
-	
+	</div>
 
-    <div id='signin-modal'>
+    <div id='signin-modal' class = 'modal'>
         <div id='center-content'>
             <div>
-                <h1 id='formheader'>
+                <h1 id='formnavBar'>
                     Sign in
                 </h1>
                 <form id='signinform'>
@@ -37,19 +36,15 @@
                     <label>Password:</label>
                     <input id='passwordInput' type='password' name='password'>
                     <button class='formButton' id='signUp1'>Sign Up</button>
-                    <button class='formButton' id='cancel'>Cancel</button>
+                    <button id = 'cancel1' class = 'cancel'>Cancel</button>
                 </form>
             </div>
         </div>
     </div>
-    <!-- <div id='signup-model' class='modal'>
-        <div class='sign-up-modal-content'></div>
-    </div> -->
 
-
-    <div id='signup-model' class='modal'>
+    <div id='signup-modal' class='modal'>
         <div class='sign-up-modal-content'>
-        <h1 id='formheader'>
+        <h1 id='formnavBar'>
             Create Account
         </h1>
         <form>
@@ -69,7 +64,7 @@
             <input id='passwordRenter' type='password' name='password'>
             <div class='spacing'></div>
             <button class='formButton' id='signUp1'>Sign Up</button>
-            <button class='formButton' id='cancel'>Cancel</button>
+            <button id = 'cancel' class = 'cancel'>Cancel</button>
         </form>
         </div>
     </div>

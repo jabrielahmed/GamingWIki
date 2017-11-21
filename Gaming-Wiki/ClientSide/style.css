@@ -1,7 +1,7 @@
 ﻿@charset "utf-8";
 /* CSS Document */
 
- header{
+ #navBar{
      height: 110px;
 	 background: #f2f2f2;
  }
@@ -25,23 +25,23 @@
 	box-sizing: border-box;	
 }
 
-#gamingwiki{
+#navBar #gamingwiki{
 	height: 100px;
 }
 
-#wikipedia{
+#navBar #wikipedia{
 	height: 100px;
 }
 
-#signup{
+#navBar #signup{
 	float: right;
 }
 
-#signin{
+#navBar #signin{
 	float: right;
 }
 
-header table{
+#navBar table{
 	width: 100%;
 }
 
@@ -55,7 +55,8 @@ body{
 	width: 40%;
 	margin: auto;
 }
-#signin-modal {
+
+#signin-modal{
     display: none; 
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -67,16 +68,19 @@ body{
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
-#center-content{
+
+#signin-modal #center-content{
     color: orange;
     margin: 15% auto; /* 15% from the top and centered */
     background-color: white;
 }
-.signinform {
+
+#signin-modal #signinform{
     margin: auto;
     woidth: 15%;
 }
-.modal{
+
+#signup-modal{
     display: none; 
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -89,29 +93,29 @@ body{
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-#signup-model input{
+#signup-modal input{
     margin-top: 5px;
     margin-left: 50px;
 }
 
-#signup-model form{
+#signup-modal form{
     border-left: 1px solid black;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     border-right: 1px solid black;
-    margin: 0px 5px 5px 5px;
+    margin: 5px 5px 5px 5px;
     background-color: #e4e4e4;
     margin: auto;
     width: 500px;
     padding-bottom: 10px;
 }
 
-.formButton{
+.modal .formButton{
     margin-top: 15px;
     margin-left: 20px;  
 }
 
-#cancel{
+.modal .cancel{
     background-color: red;
     color: white;
     width: 85px;
@@ -119,11 +123,11 @@ body{
     border: 1px solid black;
 }
 
-.spacing{
+.modal .spacing{
     margin-top: 20px;
 }
 
-h1{
+.modal h1{
     font-family: "Serif";
     color: white;
     width: 500px;
@@ -135,7 +139,7 @@ h1{
     border-right: 1px solid black;
 }
 
-label{
+.modal label{
     margin-left: 50px;
     display: block
 }

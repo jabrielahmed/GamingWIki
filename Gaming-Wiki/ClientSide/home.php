@@ -8,11 +8,11 @@
 	<link rel = "stylesheet" type = "text/css" href = "style.css" />
 </head>
 <body>
-<?php require_once('./initHeader.php') ?>
-<div id="main">
-	<img src = "wordcloud.jpg" alt = "Pacman" id = "pacman"/>
-</div>
-<?php require_once('./initFooter.php')?>
+	<?php require_once('./initHeader.php') ?>
+	<div id="main">
+		<img src = "wordcloud.jpg" alt = "Pacman" id = "pacman"/>
+	</div>
+	<?php require_once('./initFooter.php')?>
 </body>
 	<script src = "login.js"></script>
 </html>
