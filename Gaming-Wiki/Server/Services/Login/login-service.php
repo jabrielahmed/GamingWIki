@@ -9,8 +9,15 @@ class UserTable {
      * SQL for inserting an Game into the DB
      */
     public function addUser($userName, $password) {
+        try {
+            // $hash = password_hash($password);
+            $hash = crypt($password,'$2y$12$$');
+        } catch(Exception $e){
+            echo "$e";
+        }
         $query = "INSERT INTO UserTable (UserName, Password)
-                  VALUES ('$userName', '$password')";
+                  VALUES ('$userName', '$hash')";
+                  
         $this->db->ExecuteNonQuery($query);
     }
 
