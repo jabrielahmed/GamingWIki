@@ -25,7 +25,7 @@
 			<form method='post'>
 				<input type="submit" name="submitOfSearch" id="submitOfSearch" value="Search" />
 			</form>
-			<div id="yourTag">
+			<div id="userTag">
 				This is where user drop the tags.
 			</div>
 			<div id="wrapperOfAddTag">
