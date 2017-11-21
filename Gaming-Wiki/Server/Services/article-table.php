@@ -21,13 +21,13 @@ class ArticleTable {
     /**
      * SQL for Selecting a single article record from the DB
      */
-    /*public function get($gameName) {
-        echo"$gameName";
-        $query = "SELECT * FROM GameTable WHERE GameName = '$gameName' ";
-        $var = $this->db->ExecuteQuery($query);
-        print_r($var);
-        return $var;
-    }*/
+    public function getPopTags() {
+        $query = "SELECT * FROM ArticleTable WHERE Votes >= 0  ";
+        $stmt = $this->db->ExecuteQuery($query);       
+        return $stmt;
+    }
+	
+	public function search($userTag,)
 }
 
 ?>
