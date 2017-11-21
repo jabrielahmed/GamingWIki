@@ -1,3 +1,18 @@
+<?php
+	if($_SERVER['REQUEST_METHOD'] === 'POST')
+	{		
+		$popTags = getPopTags();
+		foreach($popTags as $popTags) {
+      		"{$popTags['UserTag']}";
+		$articleList = search(_POST['userTag'], _POST['rSearch']);
+	}
+	else
+	{
+		$phpTags = null;
+	 	$articleList = null;
+	}
+		
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,11 +27,7 @@
 	<div id="wrapperOfSearch">
 		<div id="popTag">
 			This is where the popular tags listed. Where user drag the tags.
-			<ul id="popList">
-				<li>Moba</li>
-				<li>FPS</li>
-				<li>RTS</li>
-			</ul>
+			<?php echo $popTags ?>
 		</div>
 		<div id="dropTags">
 			<form action='search.php' method='post'>
@@ -39,10 +50,15 @@
 	</div>
 	<div id ="result">
 	This part should be done with php code. will do after the query information is done.<br/>
-		<a href= "foo1.html" class="resultList"> How to find all the treasure(Data base) </a> <br/>
-		<a href= "foo2.html" class="resultList"> How to find all the treasure1 </a><br/>
-		<a href= "foo3.html" class="resultList"> How to find all the treasure2 </a><br/>
-		<a href= "foo4.html" class="resultList"> How to find all the treasure3 </a><br/>
+		<form action="display.php" method="post">
+			<select>
+				
+				<?php arsort($articleList);
+					foreach($articleList as $articleList)
+						echo "<option value= '$articleList['Title']'> $articleList['Title']</option>"
+					?>
+			</select>
+		</form>		
 	</div>
 </div>
 <?php require_once('./initFooter.php') ?>
