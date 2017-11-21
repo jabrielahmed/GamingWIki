@@ -10,11 +10,9 @@
 <body>
 <?php require_once('./initHeader.php') ?>
 <div id="main">
-    <?php require_once('./login/sign-up/signup.html')?>
-    <?php require_once('./login/sign-in/signin.html')?>
 	<img src = "wordcloud.jpg" alt = "Pacman" id = "pacman"/>
 </div>
 <?php require_once('./initFooter.php')?>
 </body>
-	<script src = "./login/login.js"></script>
+	<script src = "login.js"></script>
 </html>
