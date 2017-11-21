@@ -1,39 +1,14 @@
-/* style sheet for admin*/
-#removestrategy{
+.form{
+	border: 1px solid black;
+	
+}
 
-	border: 1px solid black;
-	
-	
-	
-}
-#editgame{
-	
-	border: 1px solid black;
-	
-}
-#removegame{
-	border: 1px solid black;
-	
-}
-#addgame{
-	border: 1px solid black;
-	
-	
-}
-#removeaccount{
-	border: 1px solid black;
-	
-	
-	
-}
 #removes{
-height:50px;
-background: yellow;
+	height:50px;
+	background: yellow;
 }
-
 
 h1{
 	text-align: center;
 }
-
 
