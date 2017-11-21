@@ -30,7 +30,8 @@ class ArticleTable {
 	public function search($userTag, $refineSearch)
 	{
 		$query = "SELECT * FROM ArticleTable WHERE UserTag LIKE '%$usertag%'
-											 OR GameName = $refineSearch";
+											 OR GameName LIKE '%$usertag%'
+											 OR Title = $refineSearch;
         $stmt = $this->db->ExecuteQuery($query);       
         return $stmt;
 		
