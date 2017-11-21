@@ -13,7 +13,7 @@ class ArticleTable {
      * SQL for inserting an article into the DB
      */
     public function insert($title, $html, $gameName, $customTag) {
-        $query = "INSERT INTO INSERT INTO ArticleTable(Title,HTML,GameName,CustomTag) 
+        $query = "INSERT INTO ArticleTable(Title,HTML,GameName,CustomTag) 
 				VALUES ($title, $html, $gameName, $customTag)";
         $this->db->ExecuteNonQuery($query);
     }
@@ -27,7 +27,14 @@ class ArticleTable {
         return $stmt;
     }
 	
-	public function search($userTag,)
+	public function search($userTag, $refineSearch)
+	{
+		$query = "SELECT * FROM ArticleTable WHERE UserTag LIKE '%$usertag%'
+											 OR GameName = $refineSearch";
+        $stmt = $this->db->ExecuteQuery($query);       
+        return $stmt;
+		
+	}
 }
 
 ?>
