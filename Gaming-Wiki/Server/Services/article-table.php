@@ -22,7 +22,7 @@ class ArticleTable {
      * SQL for Selecting a single article record from the DB
      */
     public function getPopTags() {
-        $query = "SELECT * FROM ArticleTable WHERE Votes >= 0  ";
+        $query = "SELECT CustomTag FROM ArticleTable WHERE Votes >= 0  ";
         $stmt = $this->db->ExecuteQuery($query);       
         return $stmt;
     }
