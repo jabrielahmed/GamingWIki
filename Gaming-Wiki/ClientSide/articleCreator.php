@@ -9,14 +9,14 @@
 <body>
 	<?php require_once('./initHeader.php') ?>
 	<div id = "main">
-	<table>
+	<table id = "table">
 		<tr>
-			<td>
-				<textarea cols = "115" rows = "40" id="textbox"></textarea>
+			<td class = "tableCell">
+				<textarea rows = "50" id = "textbox"></textarea>
 				<input type = "button" id = "previewButton" onclick = "insertPreview()" value = "Insert Preview">
 				<input type = "button" id = "submitButton" value = "Submit Article">
 			</td>
-			<td>
+			<td class = "tableCell">
 				<div id = "preview"></div>
 			</td>
 		</tr>
