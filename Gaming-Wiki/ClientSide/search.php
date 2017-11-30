@@ -2,12 +2,13 @@
 	if($_SERVER['REQUEST_METHOD'] === 'POST')
 	{		
 		$popTags = getPopTags();
+		foreach($popTags as $popTags) {
+      		"{$popTags['UserTag']}";
 		$articleList = search(_POST['userTag'], _POST['rSearch']);
-		arsort($articleList);
 	}
 	else
 	{
-		$popTags = null;
+		$phpTags = null;
 	 	$articleList = null;
 	}
 		
@@ -52,7 +53,7 @@
 		<form action="display.php" method="post">
 			<select>
 				
-				<?php 
+				<?php arsort($articleList);
 					foreach($articleList as $articleList)
 						echo "<option value= '$articleList['Title']'> $articleList['Title']</option>"
 					?>

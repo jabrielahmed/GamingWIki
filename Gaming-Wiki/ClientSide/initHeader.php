@@ -25,18 +25,20 @@
 
     <div id='signin-modal' class = 'modal'>
         <div id='center-content'>
-            <div>
+            <div class='center-form'>
                 <h1 id='formnavBar'>
                     Sign in
                 </h1>
-                <form id='signinform'>
+                <form id='signinform' action='../ClientSide/home.php' method='POST'>
                     <label>Username:</label>
-                    <input id='userNameInput' type='text' name='username'/>
+                    <input id='userNameInput' type='text' name='username' required/>
                     <div class='spacing'></div>
                     <label>Password:</label>
-                    <input id='passwordInput' type='password' name='password'>
+                    <input id='passwordInput' type='password' name='password' required />
+                    <input type='hidden' name='login' value='true' />
+                    <br />
                     <button class='formButton' id='signUp1'>Sign Up</button>
-                    <button id = 'cancel1' class = 'cancel'>Cancel</button>
+                    <input type='button' id='cancel1' class='cancel' value='Cancel'>
                 </form>
             </div>
         </div>
@@ -47,24 +49,27 @@
         <h1 id='formnavBar'>
             Create Account
         </h1>
-        <form>
+        <form method='POST'  action='../ClientSide/home.php'>
             <label>First name:</label>
-            <input type='text' name='firstname' />
+            <input type='text' name='firstname' required />
             <div class='spacing'></div>            
             <label>Last name:</label>
-            <input type='text' name='lastname'>
+            <input type='text' name='lastname' required />
+            <div class='spacing'></div>
+            <label>Email:</label>
+            <input type='text' name='email' required />
             <div class='spacing'></div>
             <label>Username:</label>
-            <input id='userNameInput' type='text' name='username'/>
+            <input id='userNameInput' type='text' name='username' required />
             <div class='spacing'></div>
             <label>Password:</label>
-            <input id='passwordInput' type='password' name='password'>
+            <input id='passwordInput' type='password' name='password' required />
             <div class='spacing'></div>
             <label> Retype Password:</label>            
-            <input id='passwordRenter' type='password' name='password'>
+            <input id='passwordRenter' type='password' name='passwordr' required />
             <div class='spacing'></div>
-            <button class='formButton' id='signUp1'>Sign Up</button>
-            <button id = 'cancel' class = 'cancel'>Cancel</button>
+            <input type='submit' class='formButton' id='signUp1' required />
+            <input type='button' value='cancel' id ='cancel' class='cancel' required />
         </form>
         </div>
     </div>
