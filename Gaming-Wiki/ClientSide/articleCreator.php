@@ -12,9 +12,12 @@
 	<table id = "table">
 		<tr>
 			<td class = "tableCell">
-				<textarea rows = "50" id = "textbox"></textarea>
-				<input type = "button" id = "previewButton" onclick = "insertPreview()" value = "Insert Preview">
-				<input type = "button" id = "submitButton" value = "Submit Article">
+				<textarea rows = "1" id = "articleTitle" placeholder = "Title"></textarea>
+				<textarea rows = "40" id = "textbox" placeholder = "HTML and Inline CSS here."></textarea>
+				<textarea rows = "1" id = "gameTitle" placeholder = "Game Name"></textarea>
+				<input type = "button" class = "previewButtons" onclick = "insertPreview()" value = "Insert Preview">
+				<input type = "button" class = "previewButtons" value = "Submit Article">
+				<textarea rows = "1" id = "tagTable" placeholder = "<genre:arcade> <console:xboxone> <boss guide>"></textarea>
 			</td>
 			<td class = "tableCell">
 				<div id = "preview"></div>
