@@ -164,3 +164,6 @@ body{
     margin-left: 50px;
     display: block
 }
+#wordcloud {
+    margin: auto;
+}
