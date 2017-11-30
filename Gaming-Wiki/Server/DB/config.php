@@ -18,7 +18,6 @@
                             DB_USER,
                             DB_PASS,
                             array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)); 
-                            echo"success";
             } catch (PDOException $e) {
                 echo"$e";
                 exit();
@@ -40,7 +39,6 @@
         try {
             $stmt = $this->dbh->prepare($query);
             $stmt->execute();
-            echo"good";
         } catch (PDOexception $e) {
             // TODO: Actual error management
             die($e->getMessage());

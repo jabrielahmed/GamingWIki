@@ -34,11 +34,19 @@
 }
 
 #navBar #signup{
-	float: right;
+    float: right;
+    color: darkblue;
+    background-color: white;
+    border: 1px solid lightblue;
+    margin-right: 3%;
 }
 
 #navBar #signin{
-	float: right;
+    float: right;
+    color: darkblue;
+    background-color: white;
+    border: 1px solid lightblue;
+    margin-right: 3%;
 }
 
 #navBar table{
@@ -70,14 +78,20 @@ body{
 }
 
 #signin-modal #center-content{
-    color: orange;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 5% auto; 
     background-color: white;
+    width: 500px;
+}
+.sign-up-modal-content {
+    margin: 5% auto;
 }
 
-#signin-modal #signinform{
+ #signinform{
     margin: auto;
-    woidth: 15%;
+    padding-left: 5%;
+    background-color: #e4e4e4;
+    padding-bottom: 2%;
+    
 }
 
 #signup-modal{
@@ -90,7 +104,7 @@ body{
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgba(0,0,0,0.4); 
 }
 
 #signup-modal input{
@@ -104,7 +118,7 @@ body{
     border-bottom: 1px solid black;
     border-right: 1px solid black;
     margin: 5px 5px 5px 5px;
-    background-color: #e4e4e4;
+    background-color: #e4e4e4;r: #e4e4e4;
     margin: auto;
     width: 500px;
     padding-bottom: 10px;
@@ -117,12 +131,19 @@ body{
 
 .modal .cancel{
     background-color: red;
+    text-align: center;
     color: white;
     width: 85px;
     height: 30px;
     border: 1px solid black;
 }
-
+.modal #signUp1 {
+    background-color: blue;
+    color: white;
+    width: 85px;
+    height: 30px;
+    border: 1px solid black;
+}
 .modal .spacing{
     margin-top: 20px;
 }
@@ -142,4 +163,7 @@ body{
 .modal label{
     margin-left: 50px;
     display: block
+}
+#wordcloud {
+    margin: auto;
 }
