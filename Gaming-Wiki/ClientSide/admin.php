@@ -1,3 +1,32 @@
+<?php
+require_once('../Server/DB/config.php');
+require_once('./adminqueries.php');
+$db = new DB();
+$db->connect();
+$adminTable = new AdminTable($db);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	if(isset($_POST['removeStrategy'])){
+		$adminTable->RemoveStrategy($gamename);
+	}
+	 if(isset($_POST['removeGame'])){
+	$adminTable->RemoveGame($_POST['removeGame']);
+	}
+	 if(isset($_POST['addGame'])){
+		$adminTable->AddGame($_POST['addGame'],$_POST['addGame']);
+	}
+	 if(isset($_POST['removeAccount'])){
+		$adminTable->RemoveAccount($_POST['removeAccount']);
+	}
+	 if(isset($_POST['veiwMetrics'])){
+		
+	}
+	else{
+	}
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,42 +45,51 @@
 				<td id ="removestrategy">
 					<h1>Remove Strategy</h1>
 					<label> Strategy Name:</label>
-					<input type="Search" id="adminsearch" name="searchstrategy" size="12" value=""/>
-					<label>Game Info:</label>
-					<textarea rows="5" cols="50">
-					</textarea>
-					<button>Remove</button>
+					<form action='adminqueries.php' method='post'>
+						<input type="Search" id="adminsearch" name="removeStrategy" size="12" />
+						<label>Game Info:</label>
+						<textarea rows="5" cols="50">
+						</textarea>		
+						<input type="submit" />
+					</form>
 				</td>
 		
 				<td class="form" id="removegame">
 					<h1>Remove Game</h1>
 					<label> Game Name:</label>
-					<input type="Search" id="adminsearch" name="searchgame" size="12" value=""/>
-					<button>Remove</button>
+					<form action='admin.php' method='post'>
+						<input type="Search" id="adminsearch" name="removeGame" size="12"/>				
+						<input type="submit" />
+					</form>
 				</td>
 			</tr>
 			<tr>
 				<td id="removes">
 					<h1>Add Game</h1>
 					<label> Game Name:</label>	
-					<input type="Search" id="adminsearch" name="addgame" size="12" value=""/>
-					<label> Game Info:</label>
-					<textarea rows="5" cols="50"></textarea>
-					<button>OK</button>
+					<form action='admin.php' method='post'>
+						<input type="Search" id="adminsearch" name="addGame" size="12" value=""/>
+						<label> Game Info:</label>
+						<textarea rows="5" cols="50"></textarea>
+						<input type="submit" />
+					</form>
 				</td>
 				<td id="removeaccount">
 					<h1>Remove Account</h1>
 					<label> Account Name:</label>
-					<input type="Search" id="adminsearch" name="removeaccount" size="12" value=""/>
-					<button>Remove</button>
+					<form action='admin.php' method='post'>
+						<input type="Search" id="adminsearch" name="removeAccount" size="12" value=""/>
+						<input type="submit" />
+					</form>
 				</td>
 				<td id="veiwmetrics">
 					<h1>Veiw Metrics</h1>
 					<label> Search Tag:</label>
-					<input type="Search" id="adminsearch" name="removeaccount" size="12" value=""/>
-					<button>Veiw Metrics</button>
+					<form action='admin.php' method='post'>
+						<input type="Search" id="adminsearch" name="removeAccount" size="12" value=""/>
+						<input type="submit" />
+					</form>
 					<textarea rows="5" cols="50"></textarea>
-				
 				</td>
 			</tr>	
 		</table>

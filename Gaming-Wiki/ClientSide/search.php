@@ -1,17 +1,24 @@
 <?php
+	require_once("../Server/Services/article-table.php");
+	require_once("../Server/DB/config.php");
+	$popTag;
+	$articleList;
 	if($_SERVER['REQUEST_METHOD'] === 'POST')
-	{		
-		$popTags = getPopTags();
-		foreach($popTags as $popTags) {
-      		"{$popTags['UserTag']}";
-		$articleList = search(_POST['userTag'], _POST['rSearch']);
+	{	
+		$db = new DB();	
+		$db->connect();
+		$articleTable = new ArticleTable($db);
+		$popTags = $articleTable->getPopTags();
+		$articleList = $articleTable->search($_POST['search'], 'empty');
 	}
 	else
 	{
-		$phpTags = null;
 	 	$articleList = null;
+		$db = new DB();	
+		$db->connect();
+		$articleTable = new ArticleTable($db);
+		$popTags = $articleTable->getPopTags();
 	}
-		
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,42 +33,27 @@
 <div id="main">
 	<div id="wrapperOfSearch">
 		<div id="popTag">
-			This is where the popular tags listed. Where user drag the tags.
-			<?php echo $popTags ?>
+		<?php print_r($popTags); ?>
 		</div>
 		<div id="dropTags">
 			<form action='search.php' method='post'>
-				<input type="text" name="rSearch" id="rSearch" col="5" />								
+				<input type="text" name="search" id="search" col="5" />	
+				<input type="button" id="submitOfSearch" value="Search" onclick="submitWithTags()"/>
+				<input type="hidden" name="userTags" value="" id="commaSeperatedTags">
+				<div id="userTag"></div>
 			</form>
-			<form method='post'>
-				<input type="submit" name="submitOfSearch" id="submitOfSearch" value="Search" />
-			</form>
-			<div id="userTag">
-				This is where user drop the tags.
-			</div>
 			<div id="wrapperOfAddTag">
-				<form method="post">
-					
-					<input type="submit" name="submitOfAdd" id="submitOfAdd" value="<--Add Tags" />
-					<input type="text" name="addTag" id="addTag" />						
-				</form>
+				<input type="button" id="submitOfAdd" value="<--Add Tags" onclick="addTag()"/>
+				<input type="text" name="addTag" id="addTag" />
 			</div>
 		</div>
 	</div>
 	<div id ="result">
-	This part should be done with php code. will do after the query information is done.<br/>
-		<form action="display.php" method="post">
-			<select>
-				
-				<?php arsort($articleList);
-					foreach($articleList as $articleList)
-						echo "<option value= '$articleList['Title']'> $articleList['Title']</option>"
-					?>
-			</select>
-		</form>		
+		<?php print_r($articleList); ?>
 	</div>
 </div>
 <?php require_once('./initFooter.php') ?>
 </body>
 	<script src = "./login/login.js"></script>
+	<script src = "search.js"></script>
 </html>
