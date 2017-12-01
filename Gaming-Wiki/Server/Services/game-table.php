@@ -22,11 +22,18 @@ class GameTable {
      * SQL for Selecting a single Game record from the DB
      */
     public function get($gameName) {
-        echo"$gameName";
         $query = "SELECT * FROM GameTable WHERE GameName = '$gameName' ";
-        $var = $this->db->ExecuteQuery($query);
-        print_r($var);
-        return $var;
+        $response = $this->db->ExecuteQuery($query);
+        return $response;
+    }
+
+    /**
+     * SQL for getting all games from the database
+     */
+    public function getAll() {
+        $query = "SELECT GameName FROM  GameTable";
+        $response = $this->db->ExecuteQuery($query);
+        return $response;
     }
 }
 

@@ -46,6 +46,12 @@
     border: 1px solid lightblue;
     margin-right: 3%;
 }
+#logout {
+    margin-left: 15%;
+    color: darkblue;
+    background-color: white;
+    border: 1px solid lightblue;
+}
 
 #navBar table{
 	width: 100%;
@@ -164,4 +170,12 @@ body{
 }
 #wordcloud {
     margin: auto;
+}
+.flexbox {
+    margin-right: 2%;
+    position: absolute;
+    right: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
