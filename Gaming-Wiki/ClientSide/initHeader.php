@@ -12,7 +12,7 @@
 		</td>
 		<td>
 			<form action = 'search.php' method = 'post'>
-				<input type = 'text' id = 'search' placeholder = 'Search our Site'>
+				<input type = 'text' id = 'search' name= 'search' placeholder = 'Search our Site'>
 			</form>
 		</td>
 		<td>
