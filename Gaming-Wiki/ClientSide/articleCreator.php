@@ -7,6 +7,12 @@
 	<link rel = "stylesheet" type = "text/css" href = "articleCreator.css"/>
 </head>
 <body>
+	<?php 
+		if(session_id() == '') {
+			session_start();
+		}
+	?>
+	
 	<?php require_once('./initHeader.php') ?>
 	<div id = "main">
 	<table id = "table">

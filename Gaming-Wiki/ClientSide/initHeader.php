@@ -15,9 +15,23 @@
 				<input type = 'text' id = 'search' placeholder = 'Search our Site'>
 			</form>
 		</td>
-		<td>
-			<input type = 'submit' id = 'signup' value = 'Sign Up'>
-			<input type = 'submit' id = 'signin' value = 'Sign In'>
+        <td>";
+    if(isset($_SESSION['user'])) {
+        echo"
+        <div class='flexbox'>
+            <div>
+            <a href='./articleCreator.php'>Create Article</a>
+            </div>
+            <form id='logoutform' method='POST' action='./home.php'>
+                <input type='submit' id='logout' name='logout' value='Log Out' />
+            </form>
+        </div>        
+            ";        
+    } else {
+        echo"<input type = 'submit' id = 'signup' value = 'Sign Up'>
+            <input type = 'submit' id = 'signin' value = 'Sign In'>";
+    }    
+	echo "
 		</td>
 	</tr>
 	</table>
@@ -37,7 +51,7 @@
                     <input id='passwordInput' type='password' name='password' required />
                     <input type='hidden' name='login' value='true' />
                     <br />
-                    <button class='formButton' id='signUp1'>Sign Up</button>
+                    <button class='formButton' id='signUp1'>Sign In</button>
                     <input type='button' id='cancel1' class='cancel' value='Cancel'>
                 </form>
             </div>

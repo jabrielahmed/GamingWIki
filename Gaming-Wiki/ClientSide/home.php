@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang = "en">
-
 <head>
 	<meta charset="utf-8"/>
 	<meta name="keywords" content = "gamingwiki index homepage signin signup "/>
@@ -9,9 +8,20 @@
 	<link rel = "stylesheet" type = "text/css" href = "style.css" />
 </head>
 <body>
-	<?php session_start();?>
+	<?php
+	if(session_id() == '') {
+		session_start();
+	}
+	 ?>
 	<?php require_once('./initHeader.php') ?>
 	<div id="main">
+		<?php 
+			// if(isset($_SESSION['user'])) {
+			// 	var_dump($_SESSION);
+			// 	$sess = $_SESSION['user'];
+			// 	echo"$sess";
+			// }
+		?>
 		<div id="wordcloud"></div>
 		<?php
 			require_once("../Server/DB/config.php");
@@ -22,24 +32,29 @@
 		if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
 				if($_POST['password'] == $_POST['passwordr']) {
 					$userTable->addUser($_POST['username'], $_POST['password'], $_POST['email'], $_POST['firstname'], $_POST['lastname']);
-					
 				} 
 		}
 		if(isset($_POST['login'])) {
 			$response = $userTable->userLogin($_POST['username'], $_POST['password']);
-			print_r($response);
 			if(isset($response[0])) {
 				if(isset($response[0]['IsAdmin'])) {
 					if($response[0]['IsAdmin']) {
 						$_SESSION['user'] = 'admin';
+						header("Refresh:0");
 					} else {
-						$_SESSION['user'] = 'user';
+						$userName = $response[0]['UserName'];
+						$_SESSION['user'] = $userName;
+						header("Refresh:0");
 					}
 					echo"<script>alert('login successful')</script>";
 				}
 			} else {
 					echo"<script>alert('Username or password is invalid.')</script>";				
 			}
+		}
+		if(isset($_POST['logout'])) {
+			session_destroy();
+			header("Refresh:0");
 		}
 		?>
 	</div>
