@@ -12,9 +12,9 @@ class ArticleTable {
     /**
      * SQL for inserting an article into the DB
      */
-    public function insert($title, $author, $html, $gameName, $customTag) {
-        $query = "INSERT INTO ArticleTable(ArticleTitle,Author,HTML,GameName,Custom,Votes,Voters) 
-				VALUES ($title, $author, $html, $gameName, $customTag, 1, $author)";
+    public function insert($title, $author, $html, $game, $customTag) {
+        $query = "INSERT INTO ArticleTable(ArticleTitle,Author,HTML,Game,Custom,Votes,Voters) 
+				VALUES ($title, $author, $html, $game, $customTag, 1, $author)";
         $this->db->ExecuteNonQuery($query);
     }
 
@@ -22,18 +22,20 @@ class ArticleTable {
      * SQL for Selecting a single article record from the DB
      */
     public function getPopTags() {
-        $query = "SELECT Custom FROM ArticleTable ORDER BY Votes DESC LIMIT 5";
-        $stmt = $this->db->ExecuteQuery($query);       
+        $query = "SELECT Game FROM ArticleTable ORDER BY Votes DESC LIMIT 5";
+        $stmt = $this->db->ExecuteQuery($query);
         return $stmt;
     }
 	
-	public function search($search, $refineSearch)
+	public function search($search, $refineSearch, $limit)
 	{
-		$query = "SELECT * FROM ArticleTable WHERE Custom LIKE '%$search%'
-											 OR GameName LIKE '%$search%'
-											 OR ArticleTitle LIKE '%$search%'
-											 ORDER BY Votes DESC
-											 LIMIT 10";
+		$query = "SELECT ArticleTitle, Author, Game, Genre, Console, Custom, Votes, Id
+				FROM ArticleTable
+				WHERE Custom LIKE '%$search%'
+				OR Game LIKE '%$search%'
+				OR ArticleTitle LIKE '%$search%'
+				ORDER BY Votes DESC
+				LIMIT " . $limit;
         $stmt = $this->db->ExecuteQuery($query);       
         return $stmt;
 	}
