@@ -9,7 +9,7 @@
      */
     public function RemoveStrategy($gamename) {
        try {
-            $query =  "DELETE * FROM UserTable WHERE UserName = '$gameName' ";
+            $query =  "DELETE FROM GameTable WHERE GameName = '$gameName' ";
            $this->db->ExecuteNonQuery($query);
         // return  $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
@@ -38,7 +38,7 @@
 					echo"<script>alert('your Game has succesfully been added')</script>";
 					//return  $stmt->fetchAll(PDO::FETCH_ASSOC);
 		 } catch (PDOException $e) {
-					 exit("Aborting: There was a database error when Editing the strategy");
+					 exit("Aborting: There was a database error when adding the strategy");
 				}
     }
 	 /**
