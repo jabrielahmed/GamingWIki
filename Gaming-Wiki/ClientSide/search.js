@@ -151,14 +151,23 @@ function makePreview(title, author, game, genre, console, custom, votes, id){
 	var index;
 	var index;
 	var customTag;
+	var submitForm;
 	
 	preview = document.createElement("div");
 	preview.className = "preview";
 	
-	div = document.createElement("a");
-	div.href = "display.php";
+	submitForm = document.createElement("form");
+	submitForm.action = "display.php";
+	submitForm.method = "post";
+	
+	div = document.createElement("button");
 	div.innerHTML = title;
-	preview.appendChild(div);
+	div.name = "article";
+	div.value = id;
+	div.className = "submitLink";
+	div.onlick = "form.submit();";
+	submitForm.appendChild(div);
+	preview.appendChild(submitForm);
 	
 	div = document.createElement("p");
 	div.innerHTML = author;
@@ -215,11 +224,6 @@ function makePreview(title, author, game, genre, console, custom, votes, id){
 		custom = custom.substring(index + 1);
 		index = custom.indexOf(",");
 	}
-	
-	div = document.createElement("input");
-	div.type = "hidden";
-	div.value = "id";
-	preview.appendChild(div);
 	
 	return preview;
 }
