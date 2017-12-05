@@ -6,7 +6,7 @@ $db->connect();
 $adminTable = new AdminTable($db);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if(isset($_POST['removeStrategy'])){
-		$adminTable->RemoveStrategy($gamename);
+		$adminTable->RemoveStrategy($_POST['removeStrategy'],$_POST['removeStrategy']);
 	}
 	 if(isset($_POST['removeGame'])){
 	$adminTable->RemoveGame($_POST['removeGame']);
@@ -19,8 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	}
 	 if(isset($_POST['veiwMetrics'])){
 		
-	}
-	else{
 	}
 }
 
@@ -45,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				<td id ="removestrategy">
 					<h1>Remove Strategy</h1>
 					<label> Strategy Name:</label>
-					<form action='adminqueries.php' method='post'>
+					<form action='admin.php' method='post'>
 						<input type="Search" id="adminsearch" name="removeStrategy" size="12" />
 						<label>Game Info:</label>
 						<textarea rows="5" cols="50">
