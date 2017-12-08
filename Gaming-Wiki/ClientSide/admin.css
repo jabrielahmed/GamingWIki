@@ -4,14 +4,32 @@
 	
 }
 
-#removes{
-	height:50px;
-	white-space: nowrap;
-	
+table {
+    border-collapse: collapse;
+
+}
+
+table, td {
+    border: 1px solid black;
 }
 
 h1{
 	text-align: center;
 }
-
+#removes {
+    height: 50px;
+    white-space: inherit;
+    border-bottom-left-radius: 0px;
+    background: beige;
+    border: 1px solid black;
+}
+#removesstrategy {
+	border: 1px solid black;
+	background: beige;
+}
+#veiwmetrics {
+	border: 1px solid black;
+	background: beige;
+	margin-left: 50px;
+}
 
