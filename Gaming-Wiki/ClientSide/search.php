@@ -25,8 +25,15 @@
 <link rel="stylesheet" type="text/css" href="search.css" />
  
 </head>
-<?php require_once('./initHeader.php') ?>
+
 <body onload="displayQuery()">
+<?php 
+		if(session_id() == '') {
+			session_start();
+			
+		}
+	?>
+<?php require_once('./initHeader.php') ?>
 <div id="main">
 	<div id="wrapperOfSearch">
 		<div id="popTag" ondrop="drop(event)" ondragover="allowDrop(event)">
