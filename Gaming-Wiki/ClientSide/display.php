@@ -2,6 +2,11 @@
 	require_once("../Server/Services/article-table.php");
 	require_once("../Server/DB/config.php");
 	$article;
+	$db = new DB();	
+		$db->connect();
+		$articleTable = new ArticleTable($db);
+		$articleTable->upvote(1, "bob");
+	
 	if($_SERVER['REQUEST_METHOD'] === 'POST')
 	{
 		$db = new DB();	

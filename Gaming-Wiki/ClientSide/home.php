@@ -8,19 +8,14 @@
 	<link rel = "stylesheet" type = "text/css" href = "style.css" />
 </head>
 <body>
-	<?php
-	if(session_id() == '') {
-		session_start();
-	}
-	 ?>
 	<?php require_once('./initHeader.php') ?>
 	<div id="main">
 		<?php 
-			// if(isset($_SESSION['user'])) {
-			// 	var_dump($_SESSION);
-			// 	$sess = $_SESSION['user'];
-			// 	echo"$sess";
-			// }
+			if(isset($_SESSION['user'])) {
+				var_dump($_SESSION);
+				$sess = $_SESSION['user'];
+				echo"$sess";
+			}
 		?>
 		<div id="wordcloud"></div>
 		<?php
@@ -39,9 +34,11 @@
 			if(isset($response[0])) {
 				if(isset($response[0]['IsAdmin'])) {
 					if($response[0]['IsAdmin']) {
+						$_SESSION['timeout'] = time();
 						$_SESSION['user'] = 'admin';
 						header("Refresh:0");
 					} else {
+						$_SESSION['timeout'] = time();
 						$userName = $response[0]['UserName'];
 						$_SESSION['user'] = $userName;
 						header("Refresh:0");

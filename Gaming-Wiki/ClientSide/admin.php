@@ -95,4 +95,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<?php require_once('./initFooter.php') ?>
 
  </body>
+ <script src = "login.js"></script>
 </html>
