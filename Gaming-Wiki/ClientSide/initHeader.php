@@ -1,4 +1,8 @@
-<?php echo"
+<?php
+if(session_id() == '') {
+		session_start();
+	}
+echo"
 	<div id = 'navBar'>
 	<table>
 	<tr>
@@ -91,9 +95,7 @@
         </div>
     </div>
 ";
-if(session_id() == '') {
-		session_start();
-	}
+
 	if(isset($_SESSION['timeout']) && time() - $_SESSION['timeout'] > 1800) {
 		$_SESSION = array();
 		echo"<script>alert('your session has timed out')</script>";
