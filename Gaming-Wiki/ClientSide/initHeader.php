@@ -71,7 +71,7 @@
             <input type='text' name='lastname' required />
             <div class='spacing'></div>
             <label>Email:</label>
-            <input type='text' name='email' required />
+            <input type='email' name='email' required />
             <div class='spacing'></div>
             <label>Username:</label>
             <input id='userNameInput' type='text' name='username' required />
