@@ -22,9 +22,6 @@
             <div>
             <a href='./articleCreator.php'>Create Article</a>
             </div>
-			<div>
-            <a href='./account.php'>ViewAccount</a>
-            </div>
             <form id='logoutform' method='POST' action='./home.php'>
                 <input type='submit' id='logout' name='logout' value='Log Out' />
             </form>
@@ -74,7 +71,7 @@
             <input type='text' name='lastname' required />
             <div class='spacing'></div>
             <label>Email:</label>
-            <input type='email' name='email' required />
+            <input type='text' name='email' required />
             <div class='spacing'></div>
             <label>Username:</label>
             <input id='userNameInput' type='text' name='username' required />
