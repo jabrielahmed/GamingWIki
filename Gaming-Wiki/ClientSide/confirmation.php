@@ -7,7 +7,7 @@
  if($_SERVER['REQUEST_METHOD'] === 'POST'){
 		$author = 'a';
 		 $articleTable->insert($_POST['articleTitle'],$author,$_POST['textbox'],
-				$_POST['gameTitle'],$_POST['consoleTitle'],$_POST['genreTitle'],$_POST['tagTable']);
+				$_POST['gameTitle'],$_POST['genreTitle'],$_POST['consoleTitle'],$_POST['tagTable']);
 	 }
 	 else
 	 { echo "error insert your article at database level";

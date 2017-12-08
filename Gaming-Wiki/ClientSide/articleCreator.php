@@ -12,7 +12,7 @@
 	$game = $gameTable->getAll();
 	$consoleTable = new ConsoleTable($db);
 	$console = $consoleTable->getAll();	 
-	$articleTable = new ArticleTable($db);
+	
 ?>
 <!DOCTYPE html>
 <html lang="en">
