@@ -155,6 +155,7 @@ function makePreview(title, author, game, genre, console, custom, votes, id){
 	
 	preview = document.createElement("div");
 	preview.className = "preview";
+	preview.id = id;
 	
 	submitForm = document.createElement("form");
 	submitForm.action = "display.php";
@@ -173,21 +174,22 @@ function makePreview(title, author, game, genre, console, custom, votes, id){
 	div.innerHTML = author;
 	preview.appendChild(div);
 	
-	div = document.createElement("img");
-	div.src = "upvote.png";
-	div.height = "10";
-	div.width = "10";
+	div = document.createElement("span");
+	div.innerHTML = "<img src='upvote.png' height='10' width='10' onclick=function(){upvote("+id+")}>";
 	preview.appendChild(div);
+	
 	
 	div = document.createElement("p");
 	div.innerHTML = votes;
 	preview.appendChild(div);
 	
 	div = document.createElement("img");
+	div.className = "downvote";
 	div.src = "downvote.png";
 	div.height = "10";
 	div.width = "10";
 	preview.appendChild(div);
+	
 	
 	if(game != ""){
 		div = document.createElement("div");
@@ -226,4 +228,51 @@ function makePreview(title, author, game, genre, console, custom, votes, id){
 	}
 	
 	return preview;
+}
+
+function upvote(id){
+	preview = document.getElementById(id);
+	upvoteArrow = preview.childNodes[2];
+	votes = parseInt(preview.childNodes[3].innerHTML, 10);
+	downvoteArrow = preview.childNodes[4];
+	
+	if(upvoteArrow.src == "upvote.png")
+	{
+		if(downvoteArrow.src == "downvote.png")
+		{
+			upvoteArrow.src = "upvoted.png";
+			votes += 1;
+			preview.childNodes[3].innerHTML = votes;
+		}
+		else if(downvoteArrow.src == "downvoted.png")
+		{
+			upvoteArrow.src = "upvoted.png";
+			votes += 2;
+			preview.childNodes[3].innerHTML = votes;
+			downvoteArrow.src = "downvote.png";
+		}
+	}
+}
+
+function downvote(preview){
+	upvoteArrow = preview.childNodes[2];
+	votes = parseInt(preview.childNodes[3].innerHTML, 10);
+	downvoteArrow = preview.childNodes[4];
+	
+	if(downvoteArrow.src == "downvote.png")
+	{
+		if(upvoteArrow.src == "upvote.png")
+		{
+			downvoteArrow.src = "downvoted.png";
+			votes -= 1;
+			preview.childNodes[3].innerHTML = votes;
+		}
+		else if(upvoteArrow.src == "upvoted.png")
+		{
+			downvoteArrow.src = "downvoted.png";
+			votes -= 2;
+			preview.childNodes[3].innerHTML = votes;
+			upvoteArrow.src = "upvote.png";
+		}
+	}
 }
