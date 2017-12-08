@@ -12,9 +12,9 @@ class ArticleTable {
     /**
      * SQL for inserting an article into the DB
      */
-    public function insert($title, $author, $html, $game, $customTag) {
-        $query = "INSERT INTO ArticleTable(ArticleTitle,Author,HTML,Game,Custom,Votes,Voters) 
-				VALUES ($title, $author, $html, $game, $customTag, 1, $author)";
+    public function insert($title, $author, $html, $game, $genre, $console, $customTag) {
+        $query = "INSERT INTO ArticleTable (ArticleTitle,Author,HTML,Game,Genre,Console,Custom,Votes,Upvoters) 
+				VALUES ('$title', '$author', '$html', '$game', '$genre', '$console', '$customTag', '1', '$author');";
         $this->db->ExecuteNonQuery($query);
     }
 
@@ -81,6 +81,14 @@ class ArticleTable {
 		$query = "SELECT HTML
 				FROM ArticleTable
 				WHERE Id = ".$search;
+		$stmt = $this->db->ExecuteQuery($query);
+		return $stmt;
+	}
+	
+	public function getAll()
+	{
+		$query = "SELECT *
+				FROM ArticleTable";				
 		$stmt = $this->db->ExecuteQuery($query);
 		return $stmt;
 	}
