@@ -17,6 +17,13 @@ class GameTable {
                   VALUES ('$gameName', '$description')";
         $this->db->ExecuteNonQuery($query);
     }
+	
+	public function RemoveGame($gameName) {
+		
+    $query =  "DELETE * FROM GameTable WHERE GameName = '$gamename' ";
+    $this->db->ExecuteNonQuery($query);
+  
+ }
 
     /**
      * SQL for Selecting a single Game record from the DB

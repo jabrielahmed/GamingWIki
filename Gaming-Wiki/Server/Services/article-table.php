@@ -18,7 +18,13 @@ class ArticleTable {
 				VALUES ('$title', '$author', '$html', '$game', '$genre', '$console', '$customTag', '1', '$author');";
         $this->db->ExecuteNonQuery($query);
     }
-
+	
+	public function RemoveArticle($articleID) {
+		
+    $query =  "DELETE * FROM ArticleTable WHERE Id = '$articleID' ";
+    $this->db->ExecuteNonQuery($query);
+  
+ }
     /**
      * SQL for Selecting a single article record from the DB
      */

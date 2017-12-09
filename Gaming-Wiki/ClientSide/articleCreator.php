@@ -1,6 +1,5 @@
 <?php
-	require_once("../Server/Services/game-table.php");
-	
+	require_once("../Server/Services/game-table.php");	
 	require_once("../Server/Services/console-table.php");
 	require_once("../Server/Services/genre-table.php");
 	require_once("../Server/DB/config.php");
