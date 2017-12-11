@@ -1,22 +1,38 @@
+/**
+ * As soon as the home page is loaded It will grab the articles from the db and display them with
+ * clickable links to view their pages
+ */
 function getGames() {
     var url = "./getWordCloudValues.php";
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", url, false ); 
+    xmlHttp.open("GET", url, false);
     xmlHttp.onreadystatechange = function () {
-        if(xmlHttp.readyState === XMLHttpRequest.DONE && xmlHttp.status === 200) {
-            console.log(xmlHttp.responseText);
+        if (xmlHttp.readyState === XMLHttpRequest.DONE && xmlHttp.status === 200) {
             var response = JSON.parse(xmlHttp.responseText);
             var words = [];
-            response.forEach(element => {
-                words.push({text: element.GameName, weight: Math.random()*50, link: "http://www.google.com"})
+            response.forEach(element => buildURL(element, words));
+            $('#wordcloud').jQCloud(words, {
+                width: 1000,
+                height: 800
             });
-        $('#wordcloud').jQCloud(words, {
-            width: 1000,
-            height: 800
-        });
         }
-      };
-    xmlHttp.send( null );
+    };
+    xmlHttp.send(null);
     return xmlHttp.responseText;
+}
+
+/**
+ * Builds the get request for each individual link.
+ * @param {*} element specific article 
+ * @param {*} words  array that will be used to make word cloud
+ */
+function buildURL(element, words) {
+    var url = window.location.href;
+    url = url.replace(/home.php/g, "display.php")
+    url = url + "?article=" + element.Id;
+    if (element.Upvoters.length > 100) {
+        element.Upvoters.length = 100;
+    }
+    words.push({ text: element.Game, weight: element.Upvoters.length, link: url })
 }
 getGames();
