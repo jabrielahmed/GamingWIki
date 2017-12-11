@@ -30,7 +30,7 @@ class ArticleTable {
      */
 	public function getPopTags() 
 	{
-        $query = "SELECT Game FROM ArticleTable ORDER BY Votes DESC LIMIT 5";
+        $query = "SELECT Game, Genre, Custom FROM ArticleTable ORDER BY Votes DESC LIMIT 15";
         $stmt = $this->db->ExecuteQuery($query);
         return $stmt;
     }
@@ -45,39 +45,52 @@ class ArticleTable {
 	public function search($search, $refineSearch, $limit)
 	{
 		$index;
-		$game = "";
-		$genre = "";
-		$console = "";
+		$game;
+		$gameQuery = "";
+		$genre;
+		$genreQuery = "";
+		$console;
+		$consoleQuery = "";
 		$custom;
+		$customQuery = "";
 		$tag;
 		$customSeperated = "";
+		
 		$index = strpos($refineSearch, "game:");
 		if($index !== false){
 			$tag = substr($refineSearch, $index + 5);
 			$index = strpos($tag, ",");
 			$game = trim(substr($tag, 0, $index));
-			$game = " AND Game = '$game'";
+			$gameQuery = " AND Game = '$game'";
 		}
+		
 		$index = strpos($refineSearch, "genre:");
 		if($index !== false){
 			$tag = substr($refineSearch, $index + 6);
 			$index = strpos($tag, ",");
 			$genre = trim(substr($tag, 0, $index));
-			$genre = " AND Genre = '$genre'";
+			$genreQuery = " AND Genre = '$genre'";
 		}
+		
 		$index = strpos($refineSearch, "console:");
 		if($index !== false){
 			$tag = substr($refineSearch, $index + 8);
 			$index = strpos($tag, ",");
 			$console = trim(substr($tag, 0, $index));
-			$console = " AND Console = '$console'";
+			$consoleQuery = " AND Console = '$console'";
 		}
+		
 		$query = "SELECT ArticleTitle, Author, Game, Genre, Console, Custom, Votes, Id
 				FROM ArticleTable
-				WHERE ArticleTitle LIKE '%$search%'";
-		$query .= $game;
-		$query .= $genre;
-		$query .= $console;
+				WHERE (ArticleTitle LIKE '%$search%'
+				OR Game LIKE '%$search%'
+				OR Genre LIKE '%$search%'
+				OR Console LIKE '%$search%'
+				OR Custom LIKE '%$search%')";
+		$query .= $gameQuery;
+		$query .= $genreQuery;
+		$query .= $consoleQuery;
+		
 		$index = strpos($refineSearch, "custom:");
 		while($index !== false){
 			$refineSearch = substr($refineSearch, $index + 7);
@@ -86,6 +99,7 @@ class ArticleTable {
 			$query .= " AND Custom LIKE '%$custom%'";
 			$index = strpos($refineSearch, "custom:");
 		}
+		
 		$query .= " ORDER BY Votes DESC LIMIT ".$limit;
         $stmt = $this->db->ExecuteQuery($query);       
         return $stmt;
@@ -93,9 +107,10 @@ class ArticleTable {
 	
 	public function getArticle($search)
 	{
-		$query = "SELECT HTML
+		$query = "SELECT HTML, Author, ArticleTitle, Upvoters, Downvoters
 				FROM ArticleTable
-				WHERE Id = ".$search;
+				WHERE Id = ".$search."
+				LIMIT 1";
 		$stmt = $this->db->ExecuteQuery($query);
 		return $stmt;
 	}
