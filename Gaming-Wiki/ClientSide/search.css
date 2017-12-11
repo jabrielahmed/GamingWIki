@@ -82,16 +82,15 @@
 	float:left;
 }
 
-#addTag {
-	margin-top:45%;
-	width:55%;
+.addTag {
+	margin-top:30px;
 	margin-right: 2%;
 	margin-left: 0;
 }
 
-#submitOfAdd {
-	margin-top:45%;
-	width:30%;
+.submitOfAdd {
+	margin-top:30px;
+	width:120px;
 	margin-right: 2%;
 	margin-left: 2%;
 }
@@ -100,8 +99,8 @@
 	padding-left: 5px;
 	padding-right: 5px;
 	display: inline-block;
-	height: 20px;
-	margin: 2px;
+	height: auto;
+	margin: 5px;
 	border-radius: 5px;
 }
 
@@ -116,5 +115,11 @@
 }
 
 .preview{
-	
+	padding-left:20px;
+	padding-right:20px;
+	border: solid;
+}
+.preview p{
+	margin-right:30px;
+	display:inline-block;
 }

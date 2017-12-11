@@ -9,32 +9,13 @@ function submitTags(){
 	document.getElementById("searchForm").submit();
 }
 
-function addTag(){
+function addGameTag(){
 	var newTag = document.createElement("div");
-	var string = document.getElementById("addTag").value;
+	var string = document.getElementById("addGameTag").value;
 	var index;
-	var type = "custom";
-	var color = "#a64eaa";//violet
+	var type = "game";
+	var color = "#1ca557";//green
 	
-	index = string.indexOf(":");
-	if(index != -1){
-		type = string.substring(0, index);
-		type = type.trim();
-		switch(type){
-			case "game":
-				color = "#1ca557";//green
-				break;
-			case "genre":
-				color = "#f23030";//red
-				break;
-			case "console":
-				color = "#1d85f4";//blue
-				break;
-			default:
-				type = "custom";
-		}
-		string = string.substring(index + 1);
-	}
 	string = string.trim();
 	if(string != ""){
 		newTag.style.backgroundColor = color;
@@ -45,7 +26,67 @@ function addTag(){
 		newTag.addEventListener("dragstart", drag);
 		document.getElementById("userTag").appendChild(newTag);
 	}
-	document.getElementById("addTag").value = "";
+	document.getElementById("addGameTag").value = "";
+}
+
+function addGenreTag(){
+	var newTag = document.createElement("div");
+	var string = document.getElementById("addGenreTag").value;
+	var index;
+	var type = "genre";
+	var color = "#f23030";//red
+	
+	string = string.trim();
+	if(string != ""){
+		newTag.style.backgroundColor = color;
+		newTag.className = "tag";
+		newTag.innerHTML = string;
+		newTag.draggable = "true";
+		newTag.id = type + ":" + string;
+		newTag.addEventListener("dragstart", drag);
+		document.getElementById("userTag").appendChild(newTag);
+	}
+	document.getElementById("addGenreTag").value = "";
+}
+
+function addConsoleTag(){
+	var newTag = document.createElement("div");
+	var string = document.getElementById("addConsoleTag").value;
+	var index;
+	var type = "console";
+	var color = "#1d85f4";//blue
+	
+	string = string.trim();
+	if(string != ""){
+		newTag.style.backgroundColor = color;
+		newTag.className = "tag";
+		newTag.innerHTML = string;
+		newTag.draggable = "true";
+		newTag.id = type + ":" + string;
+		newTag.addEventListener("dragstart", drag);
+		document.getElementById("userTag").appendChild(newTag);
+	}
+	document.getElementById("addConsoleTag").value = "";
+}
+
+function addCustomTag(){
+	var newTag = document.createElement("div");
+	var string = document.getElementById("addCustomTag").value;
+	var index;
+	var type = "custom";
+	var color = "#a64eaa";//violet
+	
+	string = string.trim();
+	if(string != ""){
+		newTag.style.backgroundColor = color;
+		newTag.className = "tag";
+		newTag.innerHTML = string;
+		newTag.draggable = "true";
+		newTag.id = type + ":" + string;
+		newTag.addEventListener("dragstart", drag);
+		document.getElementById("userTag").appendChild(newTag);
+	}
+	document.getElementById("addCustomTag").value = "";
 }
 
 function allowDrop(ev){
@@ -64,7 +105,8 @@ function drop(ev){
 
 function displayQuery(){
 	var statement = document.getElementById("popTag").innerHTML;
-	var startIndex = statement.indexOf("[Game]");
+	var articleCounter = 0;
+	var startIndex = statement.indexOf("[" + articleCounter + "]");
 	var endIndex;
 	var title;
 	var author;
@@ -72,25 +114,56 @@ function displayQuery(){
 	var genre;
 	var console;
 	var custom;
+	var color;
+	var type;
 	var votes;
 	var id;
 	var preview;
 	
-	
-	document.getElementById("popTag").innerHTML = "Popular Game Titles!";
+	document.getElementById("popTag").innerHTML = "<b>Popular Search Tags!</b>";
 	while(startIndex != -1)
 	{
-		statement = statement.substring(startIndex + 13);
-		endIndex = statement.indexOf(" )");
-		game = statement.substring(0, endIndex);
-		startIndex = statement.indexOf("[Game]");
+		switch(Math.floor(Math.random() * 3)){
+			case 0:
+				statement = statement.substring(startIndex);
+				startIndex = statement.indexOf("[Game]");
+				statement = statement.substring(startIndex + 13);
+				endIndex = statement.indexOf(" [Genre]");
+				tagText = statement.substring(0, endIndex);
+				type = "game";
+				color = "#1ca557";//green
+				break;
+			case 1:
+				statement = statement.substring(startIndex);
+				startIndex = statement.indexOf("[Genre]");
+				statement = statement.substring(startIndex + 14);
+				endIndex = statement.indexOf(" [Custom]");
+				tagText = statement.substring(0, endIndex);
+				type = "genre";
+				color = "#f23030";//red
+				break;
+			case 2:
+				statement = statement.substring(startIndex);
+				startIndex = statement.indexOf("[Custom]");
+				statement = statement.substring(startIndex + 15);
+				endIndex = statement.indexOf(",");
+				tagText = statement.substring(0, endIndex);
+				type = "custom";
+				color = "#a64eaa";//violet
+		}
+		
+		
+		startIndex = statement.indexOf("[" + ++articleCounter + "]");
+		
+		if(tagText.length > 40)
+			continue;
 		
 		tag = document.createElement("div");
-		tag.style.backgroundColor = "#1ca557"//green
+		tag.style.backgroundColor = color;
 		tag.className = "tag";
-		tag.innerHTML = game;
+		tag.innerHTML = tagText;
 		tag.draggable = "true";
-		tag.id = "game:" + game;
+		tag.id = type + ":" + tagText;
 		tag.addEventListener("dragstart", drag);
 		document.getElementById("popTag").appendChild(tag);
 	}
@@ -171,31 +244,18 @@ function makePreview(title, author, game, genre, console, custom, votes, id){
 	preview.appendChild(submitForm);
 	
 	div = document.createElement("p");
-	div.innerHTML = author;
+	div.innerHTML = "By: " + author;
 	preview.appendChild(div);
-	
-	div = document.createElement("span");
-	div.innerHTML = "<img src='upvote.png' height='10' width='10' onclick=function(){upvote("+id+")}>";
-	preview.appendChild(div);
-	
 	
 	div = document.createElement("p");
-	div.innerHTML = votes;
+	div.innerHTML = votes + " upvotes";
 	preview.appendChild(div);
-	
-	div = document.createElement("img");
-	div.className = "downvote";
-	div.src = "downvote.png";
-	div.height = "10";
-	div.width = "10";
-	preview.appendChild(div);
-	
 	
 	if(game != ""){
 		div = document.createElement("div");
 		div.className = "tag";
 		div.innerHTML = game;
-		div.style.backgroundColor = "#1ca557"//green
+		div.style.backgroundColor = "#1ca557";//green
 		preview.appendChild(div);
 	}
 	
@@ -223,56 +283,9 @@ function makePreview(title, author, game, genre, console, custom, votes, id){
 		customTag.innerHTML = custom.substring(0, index);
 		customTag.style.backgroundColor = "#a64eaa";//violet
 		preview.appendChild(customTag);
-		custom = custom.substring(index + 1);
+		custom = custom.substring(index + 1).trim();
 		index = custom.indexOf(",");
 	}
 	
 	return preview;
-}
-
-function upvote(id){
-	preview = document.getElementById(id);
-	upvoteArrow = preview.childNodes[2];
-	votes = parseInt(preview.childNodes[3].innerHTML, 10);
-	downvoteArrow = preview.childNodes[4];
-	
-	if(upvoteArrow.src == "upvote.png")
-	{
-		if(downvoteArrow.src == "downvote.png")
-		{
-			upvoteArrow.src = "upvoted.png";
-			votes += 1;
-			preview.childNodes[3].innerHTML = votes;
-		}
-		else if(downvoteArrow.src == "downvoted.png")
-		{
-			upvoteArrow.src = "upvoted.png";
-			votes += 2;
-			preview.childNodes[3].innerHTML = votes;
-			downvoteArrow.src = "downvote.png";
-		}
-	}
-}
-
-function downvote(preview){
-	upvoteArrow = preview.childNodes[2];
-	votes = parseInt(preview.childNodes[3].innerHTML, 10);
-	downvoteArrow = preview.childNodes[4];
-	
-	if(downvoteArrow.src == "downvote.png")
-	{
-		if(upvoteArrow.src == "upvote.png")
-		{
-			downvoteArrow.src = "downvoted.png";
-			votes -= 1;
-			preview.childNodes[3].innerHTML = votes;
-		}
-		else if(upvoteArrow.src == "upvoted.png")
-		{
-			downvoteArrow.src = "downvoted.png";
-			votes -= 2;
-			preview.childNodes[3].innerHTML = votes;
-			upvoteArrow.src = "upvote.png";
-		}
-	}
 }

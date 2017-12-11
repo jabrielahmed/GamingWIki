@@ -38,9 +38,15 @@
 				<div id="userTag" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 			</form>
 			<div id="wrapperOfAddTag">
-				<input type="button" id="submitOfAdd" value="<--Add Tags" onclick="addTag()"/>
-				<input type="text" name="addTag" id="addTag"/>
-				<p>Enter a search tag. Examples:<br>guide, co-op, game:halo, genre:FPS, console:XBox</p>
+				<p>Add a search tag to find only the things that matter to you!</p>
+				<input type="button" class="submitOfAdd" value="<<Add Game<<" onclick="addGameTag()"/>
+				<input type="text" class="addTag" id="addGameTag"/><br>
+				<input type="button" class="submitOfAdd" value="<<Add Genre<<" onclick="addGenreTag()"/>
+				<input type="text" class="addTag" id="addGenreTag"/><br>
+				<input type="button" class="submitOfAdd" value="<<Add Console<<" onclick="addConsoleTag()"/>
+				<input type="text" class="addTag" id="addConsoleTag"/><br>
+				<input type="button" class="submitOfAdd" value="<<Add Custom<<" onclick="addCustomTag()"/>
+				<input type="text" class="addTag" id="addCustomTag"/>
 			</div>
 		</div>
 	</div>
