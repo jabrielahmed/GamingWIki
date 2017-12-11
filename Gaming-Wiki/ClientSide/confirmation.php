@@ -6,11 +6,15 @@
 	$articleTable = new ArticleTable($db);
  if($_SERVER['REQUEST_METHOD'] === 'POST'){
 		$author = 'a';
-		 $articleTable->insert($_POST['articleTitle'],$author,$_POST['textbox'],
-				$_POST['gameTitle'],$_POST['genreTitle'],$_POST['consoleTitle'],$_POST['tagTable']);
+		$customTags = trim($_POST['tagTable']);;
+		if(substr($customTags, -1) != ',')
+			$customTags .= ',';
+		$articleTable->insert($_POST['articleTitle'],$author,$_POST['textbox'],
+				$_POST['gameTitle'],$_POST['genreTitle'],$_POST['consoleTitle'],$customTags);
 	 }
 	 else
-	 { echo "error insert your article at database level";
+	 {
+		 echo "Can't find article.";
 	 }
 	 ?>
 	 <!DOCTYPE html>

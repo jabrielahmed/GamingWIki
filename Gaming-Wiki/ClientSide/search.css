@@ -1,11 +1,10 @@
 /* style sheet for search page*/
 
 #result {
-	
 	border: 1px solid black;
 	box-sizing: border-box;
-	margin-left: 30%;
-	width:700px;
+	margin-left: 10%;
+	margin-right:10%;
 }
 
 .resultList {
@@ -15,11 +14,11 @@
 	}
 	
 #wrapperOfSearch {
-	width: 700px;
 	height: 500px;
 	border: 1px solid black;
 	box-sizing: border-box;
-	margin-left: 30%;
+	margin-left: 10%;
+	margin-right: 10%;
 }
 
 #popTag {
