@@ -16,7 +16,14 @@
 	}
 	else
 	{
-	 	$article = null;
+		if($_SERVER['REQUEST_METHOD'] === 'GET'&& isset($_GET['article'])) {
+			$db = new DB();	
+			$db->connect();
+			$articleTable = new ArticleTable($db);
+			$article = $articleTable->getArticle($_GET['article']);
+		} else {
+			$article = null;
+		}
 	}
 ?>
 <!DOCTYPE html>
