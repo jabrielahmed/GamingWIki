@@ -35,7 +35,7 @@ require_once("../Server/Services/article-table.php");
 	 if(isset($_POST['removeAccount'])){
 		$userTable->RemoveAccount($_POST['removeAccount']);
 	}
-	 if(isset($_POST['veiwmetrics'])){
+	 if(isset($_POST['viewmetrics'])){
 	 $metrics = $articleTable->Viewmetrics();}		
 	
 	
@@ -59,7 +59,7 @@ require_once("../Server/Services/article-table.php");
 	<?php require_once('./initHeader.php') ?>
 	<div class="form" id="main">
 		<table>
-			<tr>
+			<tr id ="tr">
 				<td id ="removestrategy">
 					<h1>Remove Strategy</h1>
 					<label> Enter Article ID</label>
@@ -68,7 +68,8 @@ require_once("../Server/Services/article-table.php");
 						<input type="submit" />
 					</form>
 				</td>
-		
+			</tr>
+			<tr>
 				<td class="form" id="removegame">
 					<h1>Remove Game</h1>
 					<label> Enter Game Name:</label>
@@ -79,7 +80,7 @@ require_once("../Server/Services/article-table.php");
 				</td>
 			</tr>
 			<tr>
-				<td id="removes">
+			  <td id="removes">
 					<h1>Add Game</h1>
 					<label> Enter Game Name:</label>	
 					<form action='admin.php' method='post'>
@@ -88,7 +89,10 @@ require_once("../Server/Services/article-table.php");
 						<textarea rows="5" cols="50" name="addGame2" id ="addGame2" ></textarea>
 						<input type="submit" />
 					</form>
-				</td>
+			</td>
+			</tr>
+
+			<tr>
 				<td id="removeaccount">
 					<h1>Remove Account</h1>
 					<label> Enter Account Name:</label>
@@ -97,13 +101,16 @@ require_once("../Server/Services/article-table.php");
 						<input type="submit" />
 					</form>
 				</td>
+			</tr>
+		
+			<tr>
 				<td id="veiwmetrics">
-					<h1>Veiw Metrics</h1>
+					<h1>View Metrics</h1>
 					<label> Search Tag:</label>
 					<form action='admin.php' method='post'>
-					<input type="submit" name="veiwmetrics"  value="show metrics" />
+					<input type="submit" name="viewmetrics"  value="show metrics" />
 					</form>
-					<textarea rows="5" cols="50" ><?php
+					<p id="metrics"><?php
 					if(isset($metrics)){
 					foreach ($metrics as $row){
 							echo $row['Game'];
@@ -112,10 +119,10 @@ require_once("../Server/Services/article-table.php");
 							echo ",";
 					}
 					}
-					?></textarea>
+					?></p>
 					
-				</td>
-			</tr>	
+				</td>	
+			</tr>
 		</table>
 	</div>
 	<?php require_once('./initFooter.php') ?>
