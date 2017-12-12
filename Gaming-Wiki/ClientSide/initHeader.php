@@ -1,7 +1,8 @@
 <?php
 if(session_id() == '') {
 		session_start();
-	}
+    }
+    
 echo"
 	<div id = 'navBar'>
 	<table>
@@ -48,6 +49,7 @@ echo"
         <input type = 'submit' id = 'signin' value = 'Sign In'>
         </div>";
     }    
+    $fileName = basename($_SERVER['PHP_SELF']);    
 	echo "
 		</td>
 	</tr>
@@ -60,7 +62,7 @@ echo"
                 <h1 id='formnavBar'>
                     Sign in
                 </h1>
-                <form id='signinform' action='../ClientSide/home.php' method='POST'>
+                <form id='signinform' action='./$fileName' method='POST'>
                     <label>Username:</label>
                     <input id='userNameInput' type='text' name='username' required/>
                     <div class='spacing'></div>
@@ -80,7 +82,7 @@ echo"
         <h1 id='formnavBar'>
             Create Account
         </h1>
-        <form method='POST'  action='../ClientSide/home.php'>
+        <form method='POST'  action='./$fileName'>
             <label>First name:</label>
             <input type='text' name='firstname' required />
             <div class='spacing'></div>            
@@ -111,3 +113,39 @@ echo"
 		echo"<script>alert('your session has timed out')</script>";
 	}
 ?>
+<?php
+			require_once(realpath(dirname(__FILE__)."/../Server/DB/config.php"));
+			require_once(realpath(dirname(__FILE__)."/../Server/Services/Login/login-service.php"));
+			$db = new DB();
+			$db->connect();
+			$userTable = new UserTable($db);
+		if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
+				if($_POST['password'] == $_POST['passwordr']) {
+					$userTable->addUser($_POST['username'], $_POST['password'], $_POST['email'], $_POST['firstname'], $_POST['lastname']);
+				} 
+		}
+		if(isset($_POST['login'])) {
+			$response = $userTable->userLogin($_POST['username'], $_POST['password']);
+			if(isset($response[0])) {
+				if(isset($response[0]['IsAdmin'])) {
+					if($response[0]['IsAdmin']) {
+						$_SESSION['timeout'] = time();
+						$_SESSION['user'] = 'admin';
+						header("Refresh:0");
+					} else {
+						$_SESSION['timeout'] = time();
+						$userName = $response[0]['UserName'];
+						$_SESSION['user'] = $userName;
+						header("Refresh:0");
+					}
+					echo"<script>alert('login successful')</script>";
+				}
+			} else {
+					echo"<script>alert('Username or password is invalid.')</script>";				
+			}
+		}
+		if(isset($_POST['logout'])) {
+			session_destroy();
+			header("Refresh:0");
+		}
+		?>
