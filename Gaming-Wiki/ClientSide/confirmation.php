@@ -1,11 +1,14 @@
  <?php
+	if(session_id() == ''){
+		session_start();
+	}
 	require_once("../Server/Services/article-table.php");
 	require_once("../Server/DB/config.php");
 	$db = new DB();	
 	$db->connect();
 	$articleTable = new ArticleTable($db);
  if($_SERVER['REQUEST_METHOD'] === 'POST'){
-		$author = 'a';
+		$author = $_SESSION['user'];
 		$customTags = trim($_POST['tagTable']);;
 		if(substr($customTags, -1) != ',')
 			$customTags .= ',';
@@ -26,12 +29,6 @@
 	<link rel = "stylesheet" type = "text/css" href = "articleCreator.css"/>
 </head>
 <body>
-<?php 
-		if(session_id() == '') {
-			session_start();
-		}
-	?>
-	
 	<?php require_once('./initHeader.php') ?>
 	<div id = "main">
 	<?php echo $_POST['textbox']; ?>
