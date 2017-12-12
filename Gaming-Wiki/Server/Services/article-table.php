@@ -33,14 +33,56 @@ class ArticleTable {
         $query = "SELECT Game, Genre, Custom FROM ArticleTable ORDER BY Votes DESC LIMIT 15";
         $stmt = $this->db->ExecuteQuery($query);
         return $stmt;
-    }
-	public function upvote($articleId, $userName)
+	}
+	private function userHasVotedOnThis($userName, $articleId) {
+		$query = "SELECT * FROM ArticleTable WHERE ArticleTitle = '$articleId'";
+		$stmt = $this->db->ExecuteQuery($query);
+		if(strpos($stmt[0]['Upvoters'], $userName)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	private function userHasDownVotedOnThis($userName, $articleId) {
+		$query = "SELECT * FROM ArticleTable WHERE ArticleTitle = '$articleId'";
+		$stmt = $this->db->ExecuteQuery($query);
+		if(strpos($stmt[0]['Downvoters'], $userName)) {
+			return true;
+		} else {
+			$this->db->ExecuteNonQuery($query);
+			return false;
+		}
+	}
+	private function addVote($userName, $articleId) {
+		$query = "UPDATE ArticleTable  SET Votes = Votes + 1 WHERE ArticleTitle = '$articleId' ";
+		$this->db->ExecuteNonQuery($query);
+		$userNameWithComma = $userName.', ';		
+		$query = "UPDATE ArticleTable  SET Upvoters = CONCAT(Upvoters, '$userNameWithComma' )  WHERE ArticleTitle = '$articleId' ";
+		$this->db->ExecuteNonQuery($query);
+		$query = "UPDATE ArticleTable  SET Downvoters = REPLACE(Downvoters, '$userName', '')   WHERE ArticleTitle = '$articleId' ";
+		$this->db->ExecuteNonQuery($query);
+	}
+	private function addDownVote($userName, $articleId) {
+		$query = "UPDATE ArticleTable  SET Votes = Votes - 1 WHERE ArticleTitle = '$articleId' ";
+		$this->db->ExecuteNonQuery($query);
+		$userNameWithComma = $userName.', ';
+		$query = "UPDATE ArticleTable  SET Downvoters = CONCAT(Downvoters, '$userNameWithComma')  WHERE ArticleTitle = '$articleId' ";
+		$this->db->ExecuteNonQuery($query);
+		$query = "UPDATE ArticleTable  SET Upvoters = REPLACE(Upvoters, '$userName', '')   WHERE ArticleTitle = '$articleId' ";
+		$this->db->ExecuteNonQuery($query);
+		
+		
+	}
+	public function upvote($userName, $articleId)
 	{
-		$userName = ", ".$userName;
-		$query= "UPDATE ArticleTable SET Upvoters = CONCAT(UpVoters, '$userName')  WHERE Id = $articleId";
-		$stmt = $this->db->ExecuteNonQuery($query);
-		$query= "UPDATE ArticleTable SET Votes = Votes + 1  WHERE Id = $articleId";
-		$stmt = $this->db->ExecuteNonQuery($query);
+		if( !$this->userHasVotedOnThis($userName, $articleId)) {
+			$this->addVote($userName, $articleId);
+		}
+	}
+	public function downvote($userName, $articleId) {
+		if( !$this->userHasDownVotedOnThis($userName, $articleId)) {
+			$this->addDownVote($userName, $articleId);
+		}
 	}
 	public function search($search, $refineSearch, $limit)
 	{
