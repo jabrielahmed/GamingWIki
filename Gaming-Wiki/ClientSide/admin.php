@@ -21,15 +21,16 @@ require_once("../Server/Services/article-table.php");
 	 if(isset($_POST['removeGame'])){
 	$gameTable->RemoveGame($_POST['removeGame']);
 	}
-	 if(isset($_POST['addGame']&&$_POST['addGame2'])){
+	 if(isset($_POST['addGame']) && isset ($_POST['addGame2'])){
 		$gameTable->insert($_POST['addGame'],$_POST['addGame2']);
 	}
 	 if(isset($_POST['removeAccount'])){
 		$userTable->RemoveAccount($_POST['removeAccount']);
 	}
 	 if(isset($_POST['veiwMetrics'])){
-		$articleTable->Viewmetrics($_POST['veiwMetrics']);
+		$metrics = $articleTable->Viewmetrics($_POST['veiwMetrics']);
 	}
+
 }
 
 ?>
@@ -54,7 +55,7 @@ require_once("../Server/Services/article-table.php");
 					<h1>Remove Strategy</h1>
 					<label> Enter Article ID</label>
 					<form action='admin.php' method='post'>
-						<input type="text" id="adminsearch" name="articleId" size="12"  />
+						<input type="text" id="adminsearch1" name="articleId" size="12"  />
 						<input type="submit" />
 					</form>
 				</td>
@@ -63,7 +64,7 @@ require_once("../Server/Services/article-table.php");
 					<h1>Remove Game</h1>
 					<label> Enter Game Name:</label>
 					<form action='admin.php' method='post'>
-						<input type="text" id="adminsearch" name="removeGame" size="12"  />				
+						<input type="text" id="adminsearch2" name="removeGame" size="12"  />				
 						<input type="submit" />
 					</form>
 				</td>
@@ -73,7 +74,7 @@ require_once("../Server/Services/article-table.php");
 					<h1>Add Game</h1>
 					<label> Enter Game Name:</label>	
 					<form action='admin.php' method='post'>
-						<input type="text" id="adminsearch" name="addGame" size="12" />
+						<input type="text" id="adminsearch3" name="addGame" size="12" />
 						<label> Enter Game Info:</label>
 						<textarea rows="5" cols="50" name="addgame2" ></textarea>
 						<input type="submit" />
@@ -83,7 +84,7 @@ require_once("../Server/Services/article-table.php");
 					<h1>Remove Account</h1>
 					<label> Enter Account Name:</label>
 					<form action='admin.php' method='post'>
-						<input type="text" id="adminsearch" name="removeAccount" size="12" />
+						<input type="text" id="adminsearch4" name="removeAccount" size="12" />
 						<input type="submit" />
 					</form>
 				</td>
@@ -91,10 +92,10 @@ require_once("../Server/Services/article-table.php");
 					<h1>Veiw Metrics</h1>
 					<label> Search Tag:</label>
 					<form action='admin.php' method='post'>
-						<input type="text" id="adminsearch" name="veiwMetrics" size="12" />
+						<input type="text" id="adminsearch5" name="veiwMetrics" size="12" />
 						<input type="submit" />
 					</form>
-					<textarea rows="5" cols="50"><?php echo $row['ArticleTitle'] ?></textarea>
+					<textarea rows="5" cols="50"><?php print_r($metrics)?></textarea>
 				</td>
 			</tr>	
 		</table>
