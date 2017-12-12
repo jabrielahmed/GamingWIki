@@ -13,7 +13,7 @@ function getGames() {
             response.forEach(element => buildURL(element, words));
             $('#wordcloud').jQCloud(words, {
                 width: 1000,
-                height: 800
+                height: 500
             });
         }
     };
@@ -30,9 +30,9 @@ function buildURL(element, words) {
     var url = window.location.href;
     url = url.replace(/home.php/g, "display.php")
     url = url + "?article=" + element.Id;
-    if (element.Upvoters.length > 100) {
-        element.Upvoters.length = 100;
-    }
-    words.push({ text: element.Game, weight: element.Upvoters.length, link: url })
+    // if (element.Upvoters.length > 100) {
+    //     element.Upvoters.length = 100;
+    // }
+    words.push({ text: element.Game, weight: Math.log2(element.Upvoters.length)*2000, link: url })
 }
 getGames();

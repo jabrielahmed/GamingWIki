@@ -12,9 +12,10 @@
 	<div id="main">
 		<?php 
 			if(isset($_SESSION['user'])) {
-				var_dump($_SESSION);
-				$sess = $_SESSION['user'];
-				echo"$sess";
+				// var_dump($_SESSION);
+				
+				// $sess = $_SESSION['user'];
+				// echo"$sess";
 			}
 		?>
 		<div id="wordcloud"></div>

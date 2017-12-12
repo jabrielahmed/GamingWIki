@@ -32,6 +32,7 @@
 }
 
 #navBar #signup{
+    margin-left: 15px;
     float: right;
     color: darkblue;
     background-color: white;
@@ -46,8 +47,28 @@
     border: 1px solid lightblue;
     margin-right: 3%;
 }
+#search {
+    margin-left: 15px;
+    color: darkblue;
+    background-color: white;
+    border: 1px solid lightblue;
+}
 #logout {
+    margin-right: 15px;
+    margin-left: 15px;
+    color: darkblue;
+    background-color: white;
+    border: 1px solid lightblue;
+}
+#create-article-button {
+    margin-left: 15px;
+    color: darkblue;
+    background-color: white;
+    border: 1px solid lightblue;
+}
+#view-account-button {
     margin-left: 15%;
+    margin-right: 15px;    
     color: darkblue;
     background-color: white;
     border: 1px solid lightblue;
