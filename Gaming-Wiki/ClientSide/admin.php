@@ -5,7 +5,8 @@ if(session_id() == '') {
 }
 if((!isset($_SESSION['user']))|| ($_SESSION['user'] !== "admin"))
 {
-	header( 'Location: http://webdev.cs.uwosh.edu/students/ahmedj47/Gaming-Wiki/ClientSide/home.php' ) ;
+	// $fileName = basename($_SERVER['PHP_SELF']); 
+	header( 'Location: ./home.php' ) ;
 }
 require_once('../Server/DB/config.php');
 require_once("../Server/Services/game-table.php");	

@@ -4,7 +4,7 @@
 		}
 		if((!isset($_SESSION['user'])))
 {
-	header( 'Location: http://webdev.cs.uwosh.edu/students/ahmedj47/Gaming-Wiki/ClientSide/home.php' ) ;
+	header( 'Location: ./home.php' ) ;
 }
 	
 	require_once("../Server/Services/game-table.php");	
