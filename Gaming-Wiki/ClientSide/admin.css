@@ -6,8 +6,23 @@
 h1{
 	text-align: center;
 }
+#tr{
+	height: 50%;
+    white-space: inherit;
+    border-bottom-left-radius: 0px;
+    background: beige;
+    border: 1px solid black;
+	width:50%;
+}
 #removes {
     height: 50px;
+    white-space: inherit;
+    border-bottom-left-radius: 0px;
+    background: beige;
+    border: 1px solid black;
+}
+#removeaccount{
+	 height: 50px;
     white-space: inherit;
     border-bottom-left-radius: 0px;
     background: beige;
@@ -22,4 +37,15 @@ h1{
 	background: beige;
 	margin-left: 50px;
 }
+#removegame{
+	border: 1px solid black;
+	background: beige;
+	margin-left: 0px;
+}
+#metrics{
+	 text-align: justify;
+	 border-left: 0px;
+	 line-height: 1.8;
+}
+
 
