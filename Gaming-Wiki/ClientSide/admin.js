@@ -1,10 +1,12 @@
 function getMetrics(){
 	var data = document.getElementById('metrics').innerHTML;
+	var backupData = data;
 	var startIndex = 0;
-	var endIndex = data.indesOf(',');
+	var endIndex = data.indexOf(',');
+	var map = [];
 	var title;
-	var id;
-	var text = "";
+	var votes;
+	var string = "";
 	
 	while(endIndex != -1){
 		title = data.substring(startIndex, endIndex);
@@ -13,13 +15,32 @@ function getMetrics(){
 		startIndex = 0;
 		endIndex = data.indexOf(",");
 		
-		id = data.substring(startIndex, endIndex);
-		
 		data = data.substring(endIndex + 1);
 		startIndex = 0;
 		endIndex = data.indexOf(",");
 		
-		text += title + " : " + id + "\n";
+		map[title] = 0;
 	}
-	document.getElementById('metrics').innerHTML = text;
+	startIndex = 0;
+	endIndex = backupData.indexOf(',');
+	while(endIndex != -1){
+		title = backupData.substring(startIndex, endIndex);
+		
+		backupData = backupData.substring(endIndex + 1);
+		startIndex = 0;
+		endIndex = backupData.indexOf(",");
+		
+		votes = parseInt(backupData.substring(startIndex, endIndex));
+		
+		backupData = backupData.substring(endIndex + 1);
+		startIndex = 0;
+		endIndex = backupData.indexOf(",");
+		
+		map[title] += votes;
+	}
+	for(var k in map)
+	{
+		string += k + " : " + map[k] + "<br/>";
+	}
+	document.getElementById('metrics').innerHTML = string;
 }
