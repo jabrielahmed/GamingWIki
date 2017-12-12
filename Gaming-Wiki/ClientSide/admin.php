@@ -11,25 +11,26 @@ require_once("../Server/Services/article-table.php");
 	$genreTable = new GenreTable($db);
 	$gameTable = new GameTable($db);
 	$consoleTable = new ConsoleTable($db);
-	$userTable = new ConsoleTable($db);
+	$userTable = new UserTable($db);
 	$articleTable = new ArticleTable($db);	
 	
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	if(isset($_POST['removeStrategy'])){
+	if(isset($_POST['articleId'])){
 		$articleTable->RemoveArticle($_POST['articleId']);
 	}
 	 if(isset($_POST['removeGame'])){
 	$gameTable->RemoveGame($_POST['removeGame']);
 	}
-	 if(isset($_POST['addGame']) && isset ($_POST['addGame2'])){
+	 if(isset($_POST['addGame']) || isset ($_POST['addGame2'])){
 		$gameTable->insert($_POST['addGame'],$_POST['addGame2']);
 	}
 	 if(isset($_POST['removeAccount'])){
 		$userTable->RemoveAccount($_POST['removeAccount']);
 	}
 	 if(isset($_POST['veiwMetrics'])){
-		$metrics = $articleTable->Viewmetrics($_POST['veiwMetrics']);
+		$metrics = $articleTable->Viewmetrics($_POST['veiwMetrics']);		
 	}
+	
 
 }
 
@@ -76,7 +77,7 @@ require_once("../Server/Services/article-table.php");
 					<form action='admin.php' method='post'>
 						<input type="text" id="adminsearch3" name="addGame" size="12" />
 						<label> Enter Game Info:</label>
-						<textarea rows="5" cols="50" name="addgame2" ></textarea>
+						<textarea rows="5" cols="50" name="addGame2" id ="addGame2" ></textarea>
 						<input type="submit" />
 					</form>
 				</td>
@@ -95,7 +96,24 @@ require_once("../Server/Services/article-table.php");
 						<input type="text" id="adminsearch5" name="veiwMetrics" size="12" />
 						<input type="submit" />
 					</form>
-					<textarea rows="5" cols="50"><?php print_r($metrics)?></textarea>
+					<textarea rows="5" cols="50" ><?php 
+					if(isset ($metrics)){
+					echo " ArticleTitle = ";
+					foreach ($metrics as $row){
+						echo $row['ArticleTitle'];
+						echo ",";
+					}
+					echo " Game = ";
+					foreach ($metrics as $row){
+							echo $row['Game'];
+							echo ",";
+					}
+					echo "Votes = ";
+					foreach ($metrics as $row){
+							echo $row['Votes'];
+							echo ",";
+					} 
+					}?></textarea>
 				</td>
 			</tr>	
 		</table>

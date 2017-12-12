@@ -21,7 +21,7 @@ class ArticleTable {
 	
 	public function RemoveArticle($articleID) {
 		
-    $query =  "DELETE * FROM ArticleTable WHERE Id = '$articleID' ";
+    $query =  "DELETE FROM ArticleTable WHERE Id = '$articleID' ";
     $this->db->ExecuteNonQuery($query);
   
  }

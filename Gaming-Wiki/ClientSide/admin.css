@@ -3,16 +3,6 @@
 	border: 1px solid black;
 	
 }
-
-table {
-    border-collapse: collapse;
-
-}
-
-table, td {
-    border: 1px solid black;
-}
-
 h1{
 	text-align: center;
 }
@@ -23,7 +13,7 @@ h1{
     background: beige;
     border: 1px solid black;
 }
-#removesstrategy {
+#removestrategy {
 	border: 1px solid black;
 	background: beige;
 }
