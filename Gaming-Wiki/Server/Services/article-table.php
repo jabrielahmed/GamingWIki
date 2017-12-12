@@ -14,8 +14,9 @@ class ArticleTable {
      * SQL for inserting an article into the DB
      */
     public function insert($title, $author, $html, $game, $genre, $console, $customTag) {
-        $query = "INSERT INTO ArticleTable (ArticleTitle,Author,HTML,Game,Genre,Console,Custom,Votes,Upvoters) 
-				VALUES ('$title', '$author', '$html', '$game', '$genre', '$console', '$customTag', '1', '$author');";
+		$author = ','.$author.',';
+        $query = "INSERT INTO ArticleTable (ArticleTitle,Author,HTML,Game,Genre,Console,Custom,Votes,Upvoters,Downvoters) 
+				VALUES ('$title', '$author', '$html', '$game', '$genre', '$console', '$customTag', '1', '$author', ',');";
         $this->db->ExecuteNonQuery($query);
     }
 	
@@ -53,35 +54,43 @@ class ArticleTable {
 			return false;
 		}
 	}
-	private function addVote($userName, $articleId) {
-		$query = "UPDATE ArticleTable  SET Votes = Votes + 1 WHERE ArticleTitle = '$articleId' ";
+	private function addVote($userName, $articleId, $value) {
+		$query = "UPDATE ArticleTable  SET Votes = Votes + '$value' WHERE ArticleTitle = '$articleId' ";
 		$this->db->ExecuteNonQuery($query);
-		$userNameWithComma = $userName.', ';		
+		$userNameWithComma = $userName.',';		
 		$query = "UPDATE ArticleTable  SET Upvoters = CONCAT(Upvoters, '$userNameWithComma' )  WHERE ArticleTitle = '$articleId' ";
 		$this->db->ExecuteNonQuery($query);
-		$query = "UPDATE ArticleTable  SET Downvoters = REPLACE(Downvoters, '$userName', '')   WHERE ArticleTitle = '$articleId' ";
+		$userNameWithComma = ','.$userName.',';	
+		$query = "UPDATE ArticleTable  SET Downvoters = REPLACE(Downvoters, '$userNameWithComma', ',')   WHERE ArticleTitle = '$articleId' ";
 		$this->db->ExecuteNonQuery($query);
 	}
-	private function addDownVote($userName, $articleId) {
-		$query = "UPDATE ArticleTable  SET Votes = Votes - 1 WHERE ArticleTitle = '$articleId' ";
+	private function addDownVote($userName, $articleId, $value) {
+		$query = "UPDATE ArticleTable  SET Votes = Votes - '$value' WHERE ArticleTitle = '$articleId' ";
 		$this->db->ExecuteNonQuery($query);
-		$userNameWithComma = $userName.', ';
+		$userNameWithComma = $userName.',';		
 		$query = "UPDATE ArticleTable  SET Downvoters = CONCAT(Downvoters, '$userNameWithComma')  WHERE ArticleTitle = '$articleId' ";
 		$this->db->ExecuteNonQuery($query);
-		$query = "UPDATE ArticleTable  SET Upvoters = REPLACE(Upvoters, '$userName', '')   WHERE ArticleTitle = '$articleId' ";
+		$userNameWithComma = ','.$userName.',';
+		$query = "UPDATE ArticleTable  SET Upvoters = REPLACE(Upvoters, '$userNameWithComma', ',')   WHERE ArticleTitle = '$articleId' ";
 		$this->db->ExecuteNonQuery($query);
 		
 		
 	}
 	public function upvote($userName, $articleId)
 	{
-		if( !$this->userHasVotedOnThis($userName, $articleId)) {
-			$this->addVote($userName, $articleId);
+		if(!$this->userHasVotedOnThis($userName, $articleId)){
+			if($this->userHasDownVotedOnThis($userName, $articleId))
+				$this->addVote($userName, $articleId, 2);
+			else
+				$this->addVote($userName, $articleId, 1);
 		}
 	}
 	public function downvote($userName, $articleId) {
-		if( !$this->userHasDownVotedOnThis($userName, $articleId)) {
-			$this->addDownVote($userName, $articleId);
+		if(!$this->userHasDownVotedOnThis($userName, $articleId)){
+			if($this->userHasVotedOnThis($userName, $articleId))
+				$this->addDownVote($userName, $articleId, 2);
+			else
+				$this->addDownVote($userName, $articleId, 1);
 		}
 	}
 	public function search($search, $refineSearch, $limit)
