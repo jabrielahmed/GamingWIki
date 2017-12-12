@@ -1,4 +1,12 @@
 <?php
+if(session_id() == '') {
+	session_start();
+	
+}
+if((!isset($_SESSION['user']))|| ($_SESSION['user'] !== "admin"))
+{
+	header( 'Location: http://webdev.cs.uwosh.edu/students/ahmedj47/Gaming-Wiki/ClientSide/home.php' ) ;
+}
 require_once('../Server/DB/config.php');
 require_once("../Server/Services/game-table.php");	
 require_once("../Server/Services/console-table.php");
