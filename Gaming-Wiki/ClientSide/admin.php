@@ -55,7 +55,7 @@ require_once("../Server/Services/article-table.php");
 	<link rel="stylesheet" type="text/css" href="style.css" />
 	<link rel="stylesheet" type="text/css" href="admin.css" />
 </head>
-<body>
+<body onload="getMetrics()">
 	<?php require_once('./initHeader.php') ?>
 	<div class="form" id="main">
 		<table>
@@ -108,21 +108,21 @@ require_once("../Server/Services/article-table.php");
 					<h1>View Metrics</h1>
 					<label> Search Tag:</label>
 					<form action='admin.php' method='post'>
-					<input type="submit" name="viewmetrics"  value="show metrics" />
+
+					<input type="submit" name="viewmetrics"  value="show metrics"/>
 					</form>
 					<p id="metrics"><?php
-					if(isset($metrics)){
-					foreach ($metrics as $row){
-							echo $row['Game'];
-							echo ",";
-							echo $row['Votes'];
-							echo ",";
-					}
-					}
+						if(isset($metrics)){
+							foreach ($metrics as $row){
+								echo $row['Game'];
+								echo ",";
+								echo $row['Votes'];
+								echo ",";
+							}
+						}
 					?></p>
-					
-				</td>	
-			</tr>
+				</td>
+			</tr>	
 		</table>
 	</div>
 	<?php require_once('./initFooter.php') ?>

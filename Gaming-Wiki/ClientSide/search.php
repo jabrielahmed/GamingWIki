@@ -1,4 +1,7 @@
 <?php
+	if(session_id() == '') {
+	session_start();			
+		}
 	require_once("../Server/Services/article-table.php");
 	require_once("../Server/DB/config.php");
 	$db = new DB();	

@@ -1,4 +1,12 @@
-<?php
+<?php 
+	if(session_id() == '') {
+	session_start();			
+		}
+		if((!isset($_SESSION['user'])))
+{
+	header( 'Location: http://webdev.cs.uwosh.edu/students/ahmedj47/Gaming-Wiki/ClientSide/home.php' ) ;
+}
+	
 	require_once("../Server/Services/game-table.php");	
 	require_once("../Server/Services/console-table.php");
 	require_once("../Server/Services/genre-table.php");
@@ -21,14 +29,7 @@
 	<link rel = "stylesheet" type = "text/css" href = "style.css"/>
 	<link rel = "stylesheet" type = "text/css" href = "articleCreator.css"/>
 </head>
-<body>
-	<?php 
-		if(session_id() == '') {
-			session_start();
-			
-		}
-	?>
-	
+<body>	
 	<?php require_once('./initHeader.php') ?>
 	<div id = "main">
 	<table id = "table">
