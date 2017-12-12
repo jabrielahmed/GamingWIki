@@ -35,7 +35,7 @@ require_once("../Server/Services/article-table.php");
 	 if(isset($_POST['removeAccount'])){
 		$userTable->RemoveAccount($_POST['removeAccount']);
 	}
-	 if(isset($_POST['veiwmetrics'])){
+	 if(isset($_POST['viewmetrics'])){
 	 $metrics = $articleTable->Viewmetrics();}		
 	
 	
@@ -55,7 +55,7 @@ require_once("../Server/Services/article-table.php");
 	<link rel="stylesheet" type="text/css" href="style.css" />
 	<link rel="stylesheet" type="text/css" href="admin.css" />
 </head>
-<body>
+<body onload="getMetrics()">
 	<?php require_once('./initHeader.php') ?>
 	<div class="form" id="main">
 		<table>
@@ -98,22 +98,21 @@ require_once("../Server/Services/article-table.php");
 					</form>
 				</td>
 				<td id="veiwmetrics">
-					<h1>Veiw Metrics</h1>
+					<h1>View Metrics</h1>
 					<label> Search Tag:</label>
 					<form action='admin.php' method='post'>
-					<input type="submit" name="veiwmetrics"  value="show metrics" />
+					<input type="submit" name="viewmetrics"  value="show metrics"/>
 					</form>
-					<textarea rows="5" cols="50" ><?php
-					if(isset($metrics)){
-					foreach ($metrics as $row){
-							echo $row['Game'];
-							echo ",";
-							echo $row['Votes'];
-							echo ",";
-					}
-					}
-					?></textarea>
-					
+					<p id="metrics"><?php
+						if(isset($metrics)){
+							foreach ($metrics as $row){
+								echo $row['Game'];
+								echo ",";
+								echo $row['Votes'];
+								echo ",";
+							}
+						}
+					?></p>
 				</td>
 			</tr>	
 		</table>
