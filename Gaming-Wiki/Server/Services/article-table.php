@@ -122,9 +122,10 @@ class ArticleTable {
 		$stmt = $this->db->ExecuteQuery($query);
 		return $stmt;
 	}
+	
 	public function getArticleByName($username)
 	{
-		$query = "SELECT ArticleTitle
+		$query = "SELECT ArticleTitle,Id
 				FROM ArticleTable
 				WHERE Author = '$username'";
 		$stmt = $this->db->ExecuteQuery($query);

@@ -75,7 +75,7 @@
 				</dataList>
 				<input type = "button" class = "previewButtons" onclick = "insertPreview()" value = "Insert Preview">
 				<input type = "submit" class = "previewButtons" value = "Submit Article">
-				<textarea rows = "1" id = "tagTable" name="tagTable" placeholder = "Enter your Custom Tags, use comma to sepreate them"></textarea>
+				<textarea rows = "1" id = "tagTable" name="tagTable" placeholder = "Enter your Custom Tags, use comma to seperate them"></textarea>
 			</form>
 			</td>
 			<td class = "tableCell">
