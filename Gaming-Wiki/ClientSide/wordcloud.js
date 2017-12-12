@@ -12,8 +12,10 @@ function getGames() {
             var words = [];
             response.forEach(element => buildURL(element, words));
             $('#wordcloud').jQCloud(words, {
-                width: 1000,
-                height: 500
+                width: 1200,
+                center: {x: 0.5, y:0.2},
+                height: 600,
+                delay: 10,
             });
         }
     };

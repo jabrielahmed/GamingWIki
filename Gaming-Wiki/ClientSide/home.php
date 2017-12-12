@@ -10,51 +10,8 @@
 <body>
 	<?php require_once('./initHeader.php') ?>
 	<div id="main">
-		<?php 
-			if(isset($_SESSION['user'])) {
-				// var_dump($_SESSION);
-				
-				// $sess = $_SESSION['user'];
-				// echo"$sess";
-			}
-		?>
 		<div id="wordcloud"></div>
-		<?php
-			require_once("../Server/DB/config.php");
-			require_once("../Server/Services/Login/login-service.php");
-			$db = new DB();
-			$db->connect();
-			$userTable = new UserTable($db);
-		if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
-				if($_POST['password'] == $_POST['passwordr']) {
-					$userTable->addUser($_POST['username'], $_POST['password'], $_POST['email'], $_POST['firstname'], $_POST['lastname']);
-				} 
-		}
-		if(isset($_POST['login'])) {
-			$response = $userTable->userLogin($_POST['username'], $_POST['password']);
-			if(isset($response[0])) {
-				if(isset($response[0]['IsAdmin'])) {
-					if($response[0]['IsAdmin']) {
-						$_SESSION['timeout'] = time();
-						$_SESSION['user'] = 'admin';
-						header("Refresh:0");
-					} else {
-						$_SESSION['timeout'] = time();
-						$userName = $response[0]['UserName'];
-						$_SESSION['user'] = $userName;
-						header("Refresh:0");
-					}
-					echo"<script>alert('login successful')</script>";
-				}
-			} else {
-					echo"<script>alert('Username or password is invalid.')</script>";				
-			}
-		}
-		if(isset($_POST['logout'])) {
-			session_destroy();
-			header("Refresh:0");
-		}
-		?>
+		
 	</div>
 	<?php require_once('./initFooter.php')?>
 </body>

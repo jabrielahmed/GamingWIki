@@ -200,3 +200,7 @@ body{
     flex-direction: row;
     justify-content: center;
 }
+#wordcloud {
+    width: 95%;
+    height: 50%;
+}
