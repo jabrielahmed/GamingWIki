@@ -131,10 +131,9 @@ class ArticleTable {
 		$stmt = $this->db->ExecuteQuery($query);
 		return $stmt;
 	}
-	public function Viewmetrics($username){
-		$query = "SELECT ArticleTitle,Game,Votes
-				FROM ArticleTable
-				WHERE Author = '$username'";
+	public function Viewmetrics(){
+		$query = "SELECT Game,Votes 
+				  FROM ArticleTable";
 		$stmt = $this->db->ExecuteQuery($query);
 		return $stmt;
 	}

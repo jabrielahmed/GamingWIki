@@ -35,9 +35,9 @@ require_once("../Server/Services/article-table.php");
 	 if(isset($_POST['removeAccount'])){
 		$userTable->RemoveAccount($_POST['removeAccount']);
 	}
-	 if(isset($_POST['veiwMetrics'])){
-		$metrics = $articleTable->Viewmetrics($_POST['veiwMetrics']);		
-	}
+	 if(isset($_POST['veiwmetrics'])){
+	 $metrics = $articleTable->Viewmetrics();}		
+	
 	
 
 }
@@ -101,27 +101,19 @@ require_once("../Server/Services/article-table.php");
 					<h1>Veiw Metrics</h1>
 					<label> Search Tag:</label>
 					<form action='admin.php' method='post'>
-						<input type="text" id="adminsearch5" name="veiwMetrics" size="12" />
-						<input type="submit" />
+					<input type="submit" name="veiwmetrics"  value="show metrics" />
 					</form>
-					<textarea rows="5" cols="50" ><?php 
-					if(isset ($metrics)){
-					echo " ArticleTitle = ";
-					foreach ($metrics as $row){
-						echo $row['ArticleTitle'];
-						echo ",";
-					}
-					echo " Game = ";
+					<textarea rows="5" cols="50" ><?php
+					if(isset($metrics)){
 					foreach ($metrics as $row){
 							echo $row['Game'];
 							echo ",";
-					}
-					echo "Votes = ";
-					foreach ($metrics as $row){
 							echo $row['Votes'];
 							echo ",";
-					} 
-					}?></textarea>
+					}
+					}
+					?></textarea>
+					
 				</td>
 			</tr>	
 		</table>
