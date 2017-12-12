@@ -48,7 +48,7 @@ class UserTable {
     public function getGame($gameName, $password) {
         $query = "SELECT * FROM UserTable WHERE UserName = '$gameName' AND Password ='$password' ";
         $var = $this->db->ExecuteQuery($query);
-        print_r($var);
+        // print_r($var);
     }
 }
 ?>

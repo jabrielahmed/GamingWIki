@@ -15,28 +15,38 @@ echo"
 			</a>
 		</td>
 		<td>
-			<form action = 'search.php' method = 'post'>
-				<input type = 'text' id = 'search' name= 'search' placeholder = 'Search our Site'>
-			</form>
 		</td>
         <td>";
+            
     if(isset($_SESSION['user'])) {
         echo"
         <div class='flexbox'>
-            <div>
-            <a href='./articleCreator.php'>Create Article</a>
-            </div>
-			<div>
-            <a href='./account.php'>ViewAccount</a>
-            </div>
+            <form action = 'search.php' method = 'post'>
+                <input type = 'text' id = 'search' name= 'search' placeholder = 'Search our Site'>
+            </form>
+            <form action='./articleCreator.php'>
+                <input id='create-article-button' type='submit' value='Create Article' />
+            </form>";
+            if($_SESSION['user'] === 'admin') {
+                echo"<form action='./admin.php'><input id='view-account-button' type='submit' value='View Account'/></form>";
+            } else {
+                echo"<form action='./account.php'><input id='view-account-button' type='submit' value='View Account'/></form>";                
+            } 
+            echo"       
             <form id='logoutform' method='POST' action='./home.php'>
                 <input type='submit' id='logout' name='logout' value='Log Out' />
             </form>
         </div>        
             ";        
     } else {
-        echo"<input type = 'submit' id = 'signup' value = 'Sign Up'>
-            <input type = 'submit' id = 'signin' value = 'Sign In'>";
+        echo"
+        <div class='flexbox'>
+        <form action = 'search.php' method = 'post'>
+        <input type = 'text' id = 'search' name= 'search' placeholder = 'Search our Site'>
+        </form>
+        <input type = 'submit' id = 'signup' value = 'Sign Up'>
+        <input type = 'submit' id = 'signin' value = 'Sign In'>
+        </div>";
     }    
 	echo "
 		</td>
