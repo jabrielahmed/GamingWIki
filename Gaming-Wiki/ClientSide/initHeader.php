@@ -118,14 +118,14 @@ echo"
 			require_once(realpath(dirname(__FILE__)."/../Server/Services/Login/login-service.php"));
 			$db = new DB();
 			$db->connect();
-			$userTable = new UserTable($db);
+			$loginTable = new LoginTable($db);
 		if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
 				if($_POST['password'] == $_POST['passwordr']) {
-					$userTable->addUser($_POST['username'], $_POST['password'], $_POST['email'], $_POST['firstname'], $_POST['lastname']);
+					$loginTable->addUser($_POST['username'], $_POST['password'], $_POST['email'], $_POST['firstname'], $_POST['lastname']);
 				} 
 		}
 		if(isset($_POST['login'])) {
-			$response = $userTable->userLogin($_POST['username'], $_POST['password']);
+			$response = $loginTable->userLogin($_POST['username'], $_POST['password']);
 			if(isset($response[0])) {
 				if(isset($response[0]['IsAdmin'])) {
 					if($response[0]['IsAdmin']) {

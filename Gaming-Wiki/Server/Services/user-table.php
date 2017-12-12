@@ -13,7 +13,7 @@
 	
 	public function RemoveAccount($username) {
 		
-    $query =  "DELETE * FROM UserTable WHERE UserName = '$username' ";
+    $query =  "DELETE FROM UserTable WHERE UserName = '$username' ";
     $this->db->ExecuteNonQuery($query);
 	}
  }

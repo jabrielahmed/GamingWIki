@@ -1,5 +1,5 @@
 <?php 
-class UserTable {
+class LoginTable {
     private $db;
     function __construct($d) {
         $this->db = $d;

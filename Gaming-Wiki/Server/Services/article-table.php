@@ -21,7 +21,7 @@ class ArticleTable {
 	
 	public function RemoveArticle($articleID) {
 		
-    $query =  "DELETE * FROM ArticleTable WHERE Id = '$articleID' ";
+    $query =  "DELETE FROM ArticleTable WHERE Id = '$articleID' ";
     $this->db->ExecuteNonQuery($query);
   
  }
@@ -173,10 +173,9 @@ class ArticleTable {
 		$stmt = $this->db->ExecuteQuery($query);
 		return $stmt;
 	}
-	public function Viewmetrics($username){
-		$query = "SELECT ArticleTitle,Game,Votes
-				FROM ArticleTable
-				WHERE Author = '$username'";
+	public function Viewmetrics(){
+		$query = "SELECT Game,Votes 
+				  FROM ArticleTable";
 		$stmt = $this->db->ExecuteQuery($query);
 		return $stmt;
 	}

@@ -20,7 +20,7 @@ class GameTable {
 	
 	public function RemoveGame($gameName) {
 		
-    $query =  "DELETE * FROM GameTable WHERE GameName = '$gamename' ";
+    $query =  "DELETE FROM GameTable WHERE GameName = '$gameName' ";
     $this->db->ExecuteNonQuery($query);
   
  }
